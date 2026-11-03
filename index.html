@@ -3,423 +3,557 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#063B43">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#073f46">
 <title>اختبار الإدارة المالية | د. عمرو الشوبكي</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --deep:#063B43;
-  --deep2:#0B515B;
-  --cyan:#00A6B5;
-  --mint:#55D8CC;
-  --aqua:#E8F7F6;
-  --bg:#F1F8F8;
-  --white:#FFFFFF;
-  --text:#153E44;
-  --muted:#789398;
-  --line:#DDEBEC;
-  --red:#D94F5C;
-  --green:#079C83;
-  --shadow:0 12px 35px rgba(6,59,67,.07);
+:root{
+ --navy:#073f46;
+ --navy2:#0a5961;
+ --teal:#08a9ad;
+ --mint:#63ded0;
+ --pale:#e9f8f6;
+ --bg:#f1f7f7;
+ --ink:#153b40;
+ --muted:#789397;
+ --line:#dcebea;
+ --red:#d94d5c;
+ --green:#078b76;
+ --shadow:0 18px 50px rgba(5,54,60,.10);
 }
 *{box-sizing:border-box}
+html{min-height:100%;background:var(--bg)}
 body{
-  margin:0;
-  font-family:'Cairo',sans-serif;
-  color:var(--text);
-  background:
-  radial-gradient(circle at 5% 0%,#D9F4F2,transparent 30%),
-  var(--bg);
-  min-height:100vh;
+ margin:0;
+ font-family:"Cairo",sans-serif;
+ color:var(--ink);
+ background:radial-gradient(ellipse at 50% -15%,#d1f1ed 0,transparent 45%),var(--bg);
+ min-height:100vh;
 }
-button,input{font-family:inherit}
-.container{max-width:1050px;margin:auto;padding:18px 16px 40px}
-
-/* HEADER */
-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 16px;margin-bottom:25px;
-  background:rgba(255,255,255,.9);
-  border:1px solid var(--line);
-  border-radius:20px;
-  box-shadow:0 5px 25px #063b4309;
-  position:relative;z-index:5;
+button,input{font:inherit}
+button{cursor:pointer}
+.app{
+ width:min(100%,560px);
+ min-height:100vh;
+ margin:auto;
+ background:#f8fbfb;
+ position:relative;
+ box-shadow:0 0 70px #073f4610;
+ overflow:hidden;
 }
-.brand{display:flex;align-items:center;gap:12px}
+.topbar{
+ height:76px;
+ padding:12px 20px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ background:#fff;
+ border-bottom:1px solid var(--line);
+ position:sticky;
+ top:0;
+ z-index:20;
+}
+.brand{display:flex;align-items:center;gap:10px}
 .brand img{
-  width:65px;height:65px;object-fit:contain;
-  background:white;border-radius:14px;padding:3px;
+ width:48px;height:48px;
+ object-fit:contain;
+ border-radius:13px;
 }
-.brand strong{font-size:19px;color:var(--deep)}
-.brand small{display:block;color:var(--cyan);font-size:10px;letter-spacing:2px}
-.tag{
-  background:var(--aqua);color:#008B98;
-  border:1px solid #C9E9E9;
-  padding:8px 14px;border-radius:30px;font-size:12px;
+.brand-name{font-size:16px;font-weight:900;color:var(--navy);line-height:1.3}
+.brand-sub{font-size:9px;letter-spacing:1.3px;color:var(--teal);font-weight:800}
+.live-tag{
+ font-size:10px;font-weight:800;color:#07868c;
+ background:var(--pale);
+ border:1px solid #ccebe7;
+ border-radius:30px;padding:7px 11px;
 }
-
-/* INTRO */
+.screen{
+ display:none;
+ padding:22px 20px 34px;
+ animation:enter .3s ease;
+}
+.screen.active{display:block}
+@keyframes enter{
+ from{opacity:0;transform:translateY(8px)}
+ to{opacity:1;transform:none}
+}
 .hero{
-  position:relative;overflow:hidden;
-  background:
-  radial-gradient(circle at 90% 0%,#16717B,transparent 35%),
-  linear-gradient(135deg,var(--deep),var(--deep2));
-  border:1px solid #1D7B83;
-  border-radius:30px;
-  padding:clamp(25px,5vw,55px);
-  color:white;
-  box-shadow:0 22px 55px #04424a29;
+ background:linear-gradient(150deg,#073f46 0%,#0b6269 65%,#087f83 100%);
+ color:#fff;
+ border-radius:28px;
+ padding:27px 23px 25px;
+ position:relative;
+ overflow:hidden;
+ box-shadow:0 18px 38px #073f4628;
 }
-.eyebrow{color:var(--mint);font-size:13px;font-weight:900;letter-spacing:2px}
-.hero h1{font-size:clamp(38px,6vw,65px);line-height:1.35;margin:15px 0}
-.hero h1 span{color:#65E1D8}
-.hero p{color:#D2E9E9;line-height:2;max-width:650px}
-.doctor{font-size:21px;font-weight:900;margin:24px 0}
-.doctor span{color:#65E1D8}
-.stats{display:flex;flex-wrap:wrap;gap:12px;margin:25px 0}
-.stat{
-  background:#ffffff12;border:1px solid #ffffff25;
-  border-radius:17px;padding:12px 19px;min-width:120px;
+.hero:before,.hero:after{
+ content:"";
+ position:absolute;
+ border:1px solid #ffffff17;
+ border-radius:50%;
+ pointer-events:none;
 }
-.stat b{display:block;color:#65E1D8;font-size:24px}
-.stat small{color:#D2E9E9}
-.field{max-width:430px;margin:22px 0}
-.field label{display:block;color:#D2E9E9;font-size:13px;margin-bottom:8px}
-input{
-  width:100%;padding:15px;background:white;color:var(--text);
-  border:1px solid #D5E9E9;border-radius:14px;font-size:16px;outline:none;
+.hero:before{width:260px;height:260px;left:-115px;top:-140px}
+.hero:after{width:190px;height:190px;left:-65px;top:-105px}
+.kicker{
+ font-size:10px;font-weight:900;letter-spacing:2px;
+ color:var(--mint);position:relative;z-index:1;
 }
-input:focus{border-color:var(--mint)}
-.note{font-size:12px;color:var(--muted);line-height:2;margin-top:18px}
-.hero .note{color:#C6E1E1}
+.hero h1{
+ font-size:37px;line-height:1.4;
+ margin:10px 0 7px;font-weight:900;
+ position:relative;z-index:1;
+}
+.hero h1 span{color:#75e5d8}
+.hero p{
+ font-size:13px;line-height:2;color:#d6eeec;
+ margin:0;position:relative;z-index:1;
+}
+.instructor{
+ margin-top:20px;font-size:17px;font-weight:900;
+ position:relative;z-index:1;
+}
+.instructor span{color:var(--mint)}
+.metrics{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:9px;margin:16px 0;
+}
+.metric{
+ background:#fff;border:1px solid var(--line);
+ border-radius:17px;padding:13px 6px;
+ text-align:center;box-shadow:0 5px 16px #073f4608;
+}
+.metric b{
+ display:block;color:var(--navy);
+ font-size:21px;font-weight:900;line-height:1.4;
+}
+.metric small{font-size:10px;color:var(--muted);font-weight:700}
+.form-card{
+ background:#fff;border:1px solid var(--line);
+ border-radius:21px;padding:18px;margin-top:16px;
+ box-shadow:0 8px 25px #073f4608;
+}
+.form-card label{
+ display:block;font-size:12px;font-weight:900;
+ color:var(--navy);margin-bottom:9px;
+}
+.form-card input{
+ width:100%;border:1.5px solid #d8e8e7;
+ background:#f8fbfb;border-radius:14px;
+ padding:14px 15px;font-size:15px;
+ outline:none;color:var(--ink);
+}
+.form-card input:focus{
+ border-color:var(--teal);
+ box-shadow:0 0 0 4px #08a9ad16;
+}
+.primary{
+ border:0;color:white;
+ background:linear-gradient(120deg,#079da4,#24c4b5);
+ border-radius:15px;padding:15px 18px;
+ font-weight:900;font-size:15px;
+ box-shadow:0 9px 22px #08a9ad35;
+ transition:.2s;
+}
+.primary:active,.navbtn:active{transform:scale(.98)}
+.start{width:100%;margin-top:13px;min-height:56px}
+.small-note{
+ font-size:10px;color:var(--muted);
+ line-height:1.9;text-align:center;margin:14px 8px 0;
+}
 
-/* BUTTONS */
-.btn{
-  border:0;border-radius:14px;padding:13px 23px;
-  background:linear-gradient(135deg,var(--cyan),#35C7BC);
-  color:white;font-weight:900;font-size:15px;
-  cursor:pointer;transition:.2s;
-  box-shadow:0 6px 18px #00A6B52A;
+/* شاشة الاختبار */
+.exam-top{
+ background:linear-gradient(140deg,#073f46,#0b6269);
+ border-radius:22px;padding:17px 17px 15px;
+ color:white;box-shadow:0 12px 28px #073f4620;
 }
-.btn:hover{filter:brightness(1.07);transform:translateY(-2px)}
-.btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
-.btn.secondary{
-  background:white;color:#087F89;
-  border:1px solid #CDE5E5;box-shadow:0 3px 12px #063B430A;
+.exam-toprow{
+ display:flex;justify-content:space-between;
+ align-items:center;gap:10px;
 }
-.btn.danger{
-  background:linear-gradient(135deg,#D94F5C,#BE3449);
-  color:white;border:1px solid #E87A83;
-  box-shadow:0 6px 18px #D94F5C30;
+.exam-label{
+ font-size:10px;color:#9ce9df;
+ font-weight:900;letter-spacing:1.4px;
 }
-.btn.danger:hover{background:linear-gradient(135deg,#E46570,#C83A50)}
-
-/* EXAM */
-#exam,#result{display:none}
-.examhead{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:14px;flex-wrap:wrap;margin-bottom:20px;
-  background:white;padding:17px;border-radius:20px;
-  border:1px solid var(--line);box-shadow:var(--shadow);
+.student{
+ font-size:12px;font-weight:800;
+ margin-top:5px;color:#fff;
 }
-.examhead strong{color:var(--deep)}
 .timer{
-  font-family:'Courier New',monospace!important;
-  font-size:38px;font-weight:900;letter-spacing:4px;
-  color:var(--cyan);background:#E9F8F7;
-  border:1px solid #B8E7E4;border-radius:16px;
-  min-width:165px;text-align:center;padding:10px 18px;
-  font-variant-numeric:tabular-nums;
-  text-shadow:0 0 12px #00A6B533;
+ direction:ltr;font-family:ui-monospace,monospace;
+ font-size:28px;font-weight:900;letter-spacing:2px;
+ color:#fff;background:#ffffff18;
+ border:1px solid #ffffff35;
+ border-radius:13px;padding:8px 12px;
+ min-width:112px;text-align:center;
+ font-variant-numeric:tabular-nums;
 }
 .timer.warning{
-  color:#C94D5A;background:#FFF0F1;border-color:#F3C7CB;
-  animation:pulse 1s infinite;
+ background:#d94d5c;color:white;
+ border-color:#ff9da5;
+ animation:pulse 1s infinite;
 }
-@keyframes pulse{50%{box-shadow:0 0 0 5px #D94F5C20}}
-.meta{
-  display:flex;justify-content:space-between;
-  color:var(--muted);font-size:13px;font-weight:700;
-  margin-bottom:12px;
+@keyframes pulse{
+ 50%{box-shadow:0 0 0 5px #ff879333}
 }
-.progressbox{
-  height:8px;background:#DCEBEC;border-radius:20px;
-  overflow:hidden;margin-bottom:22px;
+.progress-meta{
+ display:flex;justify-content:space-between;
+ font-size:11px;color:#d6eeec;
+ font-weight:700;margin-top:13px;
 }
-.progress{
-  height:100%;width:0%;
-  background:linear-gradient(90deg,var(--cyan),var(--mint));
-  border-radius:20px;transition:.3s;
+.track{
+ height:6px;background:#ffffff25;
+ border-radius:10px;overflow:hidden;margin-top:7px;
 }
-.card{
-  background:white;border:1px solid var(--line);
-  border-radius:24px;padding:clamp(20px,4vw,38px);
-  min-height:350px;box-shadow:var(--shadow);
+.track span{
+ display:block;height:100%;width:0;
+ background:linear-gradient(90deg,#5ee0d1,#b1fff0);
+ border-radius:10px;transition:width .25s;
 }
-.qtag{
-  display:inline-block;color:#008E98;background:var(--aqua);
-  border:1px solid #C8ECE8;padding:7px 14px;
-  border-radius:30px;font-size:12px;font-weight:900;
+.question-card{
+ background:#fff;border:1px solid var(--line);
+ border-radius:23px;padding:21px 17px;
+ margin-top:15px;box-shadow:var(--shadow);
+ min-height:350px;
 }
+.question-overline{
+ display:flex;align-items:center;
+ justify-content:space-between;
+}
+.q-chip{
+ font-size:10px;font-weight:900;color:#078b91;
+ background:#e8f8f6;border:1px solid #ccebe7;
+ padding:7px 11px;border-radius:30px;
+}
+.q-index{font-size:11px;color:#91a7a8;font-weight:800}
 .question{
-  font-size:clamp(19px,3vw,26px);
-  line-height:1.9;font-weight:900;margin:22px 0;color:var(--text);
+ font-size:19px;line-height:1.95;
+ font-weight:900;margin:18px 0 20px;
+ color:#153b40;
 }
-.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.options{display:grid;gap:10px}
 .option{
-  display:flex;align-items:center;gap:12px;
-  text-align:right;min-height:65px;padding:13px 15px;
-  border-radius:15px;border:1px solid var(--line);
-  background:#F7FBFB;color:#244C52;
-  cursor:pointer;font-size:15px;transition:.2s;
+ width:100%;display:flex;align-items:center;
+ gap:12px;text-align:right;
+ border:1.5px solid #e1eceb;
+ background:#f9fcfc;border-radius:16px;
+ padding:12px 13px;min-height:59px;
+ color:#24484c;font-size:13px;
+ font-weight:700;line-height:1.7;
+ transition:.18s;
 }
-.option:hover{background:#EDF9F8;border-color:#79CFCA;transform:translateY(-2px)}
+.option .letter{
+ width:32px;height:32px;flex:0 0 32px;
+ display:grid;place-items:center;
+ background:#e7f3f2;border-radius:11px;
+ color:#078b91;font-weight:900;
+}
 .option.selected{
-  background:#E4F7F5;border:2px solid var(--cyan);
-  box-shadow:0 4px 14px #00A6B51A;color:var(--deep);
+ border-color:#08a9ad;background:#e9f9f6;
+ box-shadow:0 0 0 3px #08a9ad13;
+ color:#073f46;
 }
-.letter{
-  display:grid;place-items:center;width:34px;height:34px;
-  flex-shrink:0;border-radius:11px;background:#E2F2F2;
-  color:#008D99;font-weight:900;
+.option.selected .letter{background:#08a9ad;color:white}
+.navigator{
+ margin-top:14px;background:white;
+ border:1px solid var(--line);
+ border-radius:19px;padding:13px;
+ box-shadow:0 8px 22px #073f4609;
 }
-.option.selected .letter{background:var(--cyan);color:white}
-
-/* NAVIGATION */
-.dots{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0;justify-content:center}
+.dots-head{
+ display:flex;justify-content:space-between;
+ font-size:10px;font-weight:800;
+ color:var(--muted);margin:0 2px 10px;
+}
+.dots{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
 .dot{
-  width:32px;height:32px;border-radius:9px;
-  border:1px solid #D6E7E7;background:white;
-  color:var(--muted);cursor:pointer;font-size:11px;
+ border:1px solid #dcebea;background:#f7fbfb;
+ border-radius:10px;height:34px;
+ color:#789397;font-size:11px;font-weight:800;
 }
-.dot.done{background:#DDF5F1;color:#008D83;border-color:#A7DFD7}
-.dot.current{background:var(--cyan);color:white;outline:2px solid #A9E4E0}
-.nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px}
-.navgroup{display:flex;gap:10px}
-.navgroup .btn{min-width:115px}
+.dot.done{background:#dff6f1;color:#078b76;border-color:#b4e6dc}
+.dot.current{
+ background:#08a9ad;color:#fff;border-color:#08a9ad;
+ box-shadow:0 0 0 3px #08a9ad22;
+}
+.bottom-actions{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:9px;margin-top:12px;
+}
+.navbtn{
+ border:1px solid #d6e8e6;background:white;
+ color:#087e85;border-radius:14px;
+ min-height:49px;font-weight:900;font-size:13px;
+}
+.navbtn:disabled{opacity:.35;cursor:not-allowed}
+.submit{
+ width:100%;margin-top:9px;min-height:51px;
+ border:0;border-radius:14px;color:white;
+ background:linear-gradient(120deg,#d94d5c,#bc354a);
+ font-weight:900;font-size:14px;
+ box-shadow:0 8px 20px #d94d5c28;
+}
+.hint{
+ text-align:center;color:#8ba0a2;
+ font-size:10px;line-height:1.8;margin:12px 10px 0;
+}
 
-/* RESULTS */
-.resultbox{
-  background:white;border:1px solid var(--line);
-  border-radius:25px;padding:30px;text-align:center;
-  box-shadow:0 15px 45px #063B4310;
+/* شاشة النتيجة */
+.result-hero{
+ background:linear-gradient(145deg,#073f46,#0c656b);
+ border-radius:25px;padding:24px 18px;
+ text-align:center;color:white;
+ box-shadow:0 16px 35px #073f4624;
 }
-.score{font-size:85px;font-weight:900;color:var(--cyan);line-height:1.3}
-.resultgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:25px 0}
-.resultgrid div{
-  background:#F1F9F8;border:1px solid var(--line);
-  padding:15px;border-radius:14px;
+.result-hero .kicker{color:#8ce8dc}
+.result-hero h2{font-size:23px;margin:8px 0}
+.score-ring{
+ width:150px;height:150px;margin:17px auto 12px;
+ border-radius:50%;display:grid;place-items:center;
+ background:conic-gradient(#62e0d0 var(--score),#ffffff25 0);
+ position:relative;
 }
-.resultgrid b{display:block;font-size:25px;color:#087F89}
-.resultgrid small{color:var(--muted)}
-.review{text-align:right;margin-top:30px}
+.score-ring:before{
+ content:"";position:absolute;inset:9px;
+ border-radius:50%;background:#0a555d;
+}
+.score-ring strong{
+ position:relative;font-size:37px;font-weight:900;
+}
+.result-hero p{
+ font-size:12px;color:#d9efed;
+ line-height:1.9;margin:6px 0 0;
+}
+.result-stats{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:8px;margin:14px 0;
+}
+.result-stat{
+ background:#fff;border:1px solid var(--line);
+ border-radius:15px;text-align:center;padding:13px 4px;
+}
+.result-stat b{display:block;font-size:22px;color:var(--navy)}
+.result-stat small{font-size:10px;color:var(--muted);font-weight:700}
+.result-tools{display:flex;gap:9px}
+.result-tools button{flex:1}
+.review-title{
+ font-size:16px;font-weight:900;
+ color:var(--navy);margin:24px 2px 10px;
+}
 .reviewitem{
-  background:#F7FBFB;border:1px solid var(--line);
-  border-radius:14px;padding:15px;margin:10px 0;
+ background:#fff;border:1px solid var(--line);
+ border-radius:16px;padding:15px;margin:9px 0;
 }
-.reviewitem h4{line-height:1.9;margin:0 0 8px;color:var(--text)}
-.correct{color:var(--green);font-weight:800}
-.wrong{color:var(--red);font-weight:800}
-.explain{color:#648187;font-size:13px;line-height:2;margin-top:8px}
-footer{text-align:center;color:#789398;font-size:11px;margin-top:35px}
-
-/* MOBILE APP EXPERIENCE */
-@media(max-width:650px){
-  body{background:#EDF6F6}
-  .container{padding:10px 11px 30px}
-  header{
-    position:sticky;top:7px;z-index:10;
-    padding:9px 11px;margin-bottom:15px;border-radius:18px;
-  }
-  .brand{gap:8px}
-  .brand img{width:51px;height:51px}
-  .brand strong{font-size:16px}
-  .brand small{font-size:8px}
-  .tag{font-size:10px;padding:7px 9px}
-  .hero{border-radius:25px;padding:27px 20px}
-  .examhead{flex-direction:column;align-items:stretch;padding:14px}
-  .timer{
-    width:100%;min-width:unset;
-    font-size:48px;letter-spacing:6px;padding:13px;
-    border-radius:17px;
-  }
-  .card{padding:23px 16px;border-radius:21px;min-height:300px}
-  .question{font-size:20px;line-height:1.9}
-  .options{grid-template-columns:1fr;gap:9px}
-  .option{min-height:60px;padding:11px;font-size:14px}
-  .nav{display:flex;flex-direction:column;gap:12px}
-  .navgroup{display:flex;width:100%;gap:10px}
-  .navgroup .btn{flex:1;min-width:0;min-height:52px}
-  #submit{width:100%;min-height:59px;font-size:17px;order:2}
-  .dots{gap:6px}
-  .dot{width:31px;height:31px}
-  .resultbox{padding:20px 14px;border-radius:23px}
-  .score{font-size:70px}
-  .resultgrid{grid-template-columns:repeat(3,1fr);gap:6px}
-  .resultgrid div{padding:10px 5px}
-  .resultgrid b{font-size:21px}
+.reviewitem h4{
+ font-size:13px;line-height:1.9;margin:0 0 9px;
 }
-@media(max-width:370px){
-  .resultgrid{grid-template-columns:1fr}
-  .timer{font-size:40px}
+.correct{color:var(--green);font-size:12px;font-weight:900}
+.wrong{color:var(--red);font-size:12px;font-weight:900}
+.explain{font-size:11px;line-height:1.9;color:#6f898d;margin-top:6px}
+footer{
+ text-align:center;color:#9aadae;
+ font-size:10px;padding:12px 15px 25px;
+}
+@media(min-width:700px){
+ body{padding:24px 0}
+ .app{
+  min-height:calc(100vh - 48px);
+  border-radius:28px;overflow:hidden;
+ }
+ .topbar{border-radius:28px 28px 0 0}
+ .screen{padding:25px 24px 40px}
+}
+@media(max-width:380px){
+ .screen{padding:15px 13px 28px}
+ .hero{padding:23px 18px}
+ .hero h1{font-size:32px}
+ .timer{font-size:24px;min-width:100px}
+ .question{font-size:17px}
+ .dots{gap:5px}
+ .dot{height:31px}
 }
 @media print{
-  body{background:white;color:#111}
-  header,.btn,footer{display:none!important}
-  .resultbox,.reviewitem{background:white;color:#111;box-shadow:none}
-  .explain{color:#444}
+ body,.app{background:white;box-shadow:none}
+ .topbar,.result-tools,footer{display:none!important}
+ .screen{display:none!important}
+ #result{display:block!important}
+ .reviewitem{break-inside:avoid}
 }
 </style>
 </head>
 
 <body>
-<div class="container">
+<div class="app">
 
-<header>
-  <div class="brand">
-    <img src="logo.png" alt="الإدارة ببساطة">
-    <div>
-      <strong>الإدارة ببساطة</strong>
-      <small>LEARN • PRACTICE • EXCEL</small>
-    </div>
+<header class="topbar">
+ <div class="brand">
+  <img src="logo.png" alt="الإدارة ببساطة">
+  <div>
+   <div class="brand-name">الإدارة ببساطة</div>
+   <div class="brand-sub">LEARN • PRACTICE • EXCEL</div>
   </div>
-  <div class="tag">اختبار تدريبي تفاعلي</div>
+ </div>
+ <div class="live-tag">اختبار تفاعلي</div>
 </header>
 
-<!-- WELCOME SCREEN -->
-<section class="hero" id="intro">
-  <div class="eyebrow">MIDTERM PRACTICE EXAM</div>
+<main>
+
+<!-- شاشة البداية -->
+<section class="screen active" id="intro">
+ <div class="hero">
+  <div class="kicker">MIDTERM PRACTICE EXAM</div>
   <h1>الإدارة <span>المالية</span></h1>
-  <p>
-    اختبر فهمك واستعد للميد تيرم من خلال مجموعة من الأسئلة التدريبية.
-    اقرأ كل سؤال جيدًا واختر الإجابة الصحيحة.
-  </p>
-  <div class="doctor">د. <span>عمرو الشوبكي</span></div>
+  <p>اختبر فهمك واستعد للميد تيرم. اقرأ كل سؤال بعناية واختر الإجابة الأدق.</p>
+  <div class="instructor">مع <span>د. عمرو الشوبكي</span></div>
+ </div>
 
-  <div class="stats">
-    <div class="stat"><b>30:00</b><small>مدة الاختبار</small></div>
-    <div class="stat"><b>15</b><small>سؤالًا</small></div>
-    <div class="stat"><b>15 درجة</b><small>الدرجة الكلية</small></div>
-  </div>
+ <div class="metrics">
+  <div class="metric"><b>30:00</b><small>مدة الاختبار</small></div>
+  <div class="metric"><b id="totalMetric">15</b><small>سؤالًا</small></div>
+  <div class="metric"><b id="degreeMetric">15</b><small>درجة</small></div>
+ </div>
 
-  <div class="field">
-    <label for="student">اسم الطالب بالكامل</label>
-    <input id="student" placeholder="اكتب اسمك قبل البدء">
-  </div>
+ <div class="form-card">
+  <label for="student">اسم الطالب بالكامل</label>
+  <input id="student" type="text" autocomplete="name" placeholder="اكتب اسمك هنا">
+  <button class="primary start" id="start">ابدأ الاختبار الآن ←</button>
+ </div>
 
-  <button class="btn" id="start">ابدأ الاختبار الآن ←</button>
-
-  <div class="note">
-    مدة الاختبار ثلاثون دقيقة تبدأ عند الضغط على زر البدء.
-    يتم التسليم تلقائيًا عند انتهاء الوقت.
-    يمكنك التنقل بين الأسئلة ومراجعة إجاباتك قبل التسليم.
-  </div>
+ <p class="small-note">
+  يبدأ احتساب الوقت عند الضغط على زر البدء.
+  يتم تسليم الاختبار تلقائيًا عند انتهاء 30 دقيقة،
+  ويمكنك مراجعة إجاباتك قبل التسليم.
+ </p>
 </section>
 
-<!-- EXAM SCREEN -->
-<section id="exam">
-  <div class="examhead">
-    <div>
-      <div class="eyebrow">FINANCIAL MANAGEMENT</div>
-      <strong id="studentLabel"></strong>
-    </div>
-    <div class="timer" id="timer">30:00</div>
+<!-- شاشة الأسئلة -->
+<section class="screen" id="exam">
+ <div class="exam-top">
+  <div class="exam-toprow">
+   <div>
+    <div class="exam-label">FINANCIAL MANAGEMENT</div>
+    <div class="student" id="studentLabel"></div>
+   </div>
+   <div class="timer" id="timer">30:00</div>
   </div>
-
-  <div class="meta">
-    <span id="counter"></span>
-    <span id="answered"></span>
+  <div class="progress-meta">
+   <span id="counter">السؤال 1</span>
+   <span id="answered">0 من 15 تمت الإجابة</span>
   </div>
+  <div class="track"><span id="progress"></span></div>
+ </div>
 
-  <div class="progressbox">
-    <div class="progress" id="progress"></div>
+ <div class="question-card">
+  <div class="question-overline">
+   <span class="q-chip">✦ سؤال تدريبي</span>
+   <span class="q-index" id="qnum">01 / 15</span>
   </div>
+  <div class="question" id="question"></div>
+  <div class="options" id="options"></div>
+ </div>
 
-  <div class="card">
-    <div class="qtag">✦ بطاقة السؤال <span id="qnum"></span></div>
-    <div class="question" id="question"></div>
-    <div class="options" id="options"></div>
+ <div class="navigator">
+  <div class="dots-head">
+   <span>التنقل بين الأسئلة</span>
+   <span>اضغط على رقم السؤال</span>
   </div>
-
   <div class="dots" id="dots"></div>
+ </div>
 
-  <div class="nav">
-    <div class="navgroup">
-      <button class="btn secondary" id="prev">السابق</button>
-      <button class="btn secondary" id="next">التالي</button>
-    </div>
-    <button class="btn danger" id="submit">إنهاء وتسليم الاختبار ✓</button>
-  </div>
+ <div class="bottom-actions">
+  <button class="navbtn" id="prev">السابق ←</button>
+  <button class="navbtn" id="next">التالي →</button>
+ </div>
 
-  <div class="note">
-    تأكد من مراجعة إجاباتك قبل التسليم.
-    لن تتمكن من تعديل الإجابات بعد التسليم.
-  </div>
+ <button class="submit" id="submit">إنهاء وتسليم الاختبار ✓</button>
+ <p class="hint">
+  يمكنك الرجوع لأي سؤال قبل التسليم.
+  لن تتمكن من تعديل إجاباتك بعد التسليم النهائي.
+ </p>
 </section>
 
-<!-- RESULTS SCREEN -->
-<section id="result">
-  <div class="resultbox">
-    <div class="eyebrow">YOUR PERFORMANCE</div>
-    <h2 id="resultTitle">انتهى الاختبار</h2>
-    <div class="score" id="score">0%</div>
-    <p id="resultMessage"></p>
-
-    <div class="resultgrid">
-      <div><b id="correctCount">0</b><small>إجابة صحيحة</small></div>
-      <div><b id="wrongCount">0</b><small>إجابة خاطئة</small></div>
-      <div><b id="blankCount">0</b><small>بدون إجابة</small></div>
-    </div>
-
-    <button class="btn secondary" onclick="window.print()">طباعة النتيجة</button>
-    <div class="review" id="review">
-      <h3>مراجعة الإجابات</h3>
-    </div>
+<!-- شاشة النتيجة -->
+<section class="screen" id="result">
+ <div class="result-hero">
+  <div class="kicker">YOUR PERFORMANCE</div>
+  <h2 id="resultTitle">تم تسليم الاختبار</h2>
+  <div class="score-ring" id="scoreRing" style="--score:0%">
+   <strong id="score">0%</strong>
   </div>
+  <p id="resultMessage"></p>
+ </div>
+
+ <div class="result-stats">
+  <div class="result-stat"><b id="correctCount">0</b><small>إجابة صحيحة</small></div>
+  <div class="result-stat"><b id="wrongCount">0</b><small>إجابة خاطئة</small></div>
+  <div class="result-stat"><b id="blankCount">0</b><small>بدون إجابة</small></div>
+ </div>
+
+ <div class="result-tools">
+  <button class="navbtn" onclick="window.print()">طباعة النتيجة</button>
+  <button class="navbtn" id="restart">إعادة الاختبار</button>
+ </div>
+
+ <h3 class="review-title">مراجعة الإجابات</h3>
+ <div id="review"></div>
 </section>
+
+</main>
 
 <footer>
-  الإدارة ببساطة © د. عمرو الشوبكي
-  <br>اختبار تدريبي على جزء الميد تيرم — الإدارة المالية
+ الإدارة ببساطة © د. عمرو الشوبكي<br>
+ اختبار تدريبي على جزء الميد تيرم — الإدارة المالية
 </footer>
+
 </div>
 
 <script>
+/*
+  ملاحظة:
+  الأسئلة التالية هي الأسئلة الموجودة في النسخة السابقة من الكود.
+  راجع مطابقتها مع ملف الأسئلة الأصلي قبل نشر الاختبار للطلاب.
+*/
 const QUESTIONS = [
+
 {
 q:"أي من الأصول التالية قد ينتج عن الاستثمار فيها مزيدًا من الربحية للمنشأة؟",
 o:["المخزون","النقدية","الأصول الثابتة","الأصول المتداولة"],
 a:2,
 why:"الأصول الثابتة تُستخدم في النشاط وتساهم في تحقيق الإيرادات والربحية."
 },
+
 {
 q:"ما أسلوب التخطيط المالي الذي يحدد عدد الوحدات الواجب إنتاجها وبيعها لتغطية جميع التكاليف؟",
 o:["تحليل التعادل","التنبؤ المالي","تحليل الحساسية","الرفع المالي"],
 a:0,
 why:"تحليل التعادل يحدد حجم المبيعات الذي تتساوى عنده الإيرادات مع إجمالي التكاليف."
 },
+
 {
 q:"إجمالي الخصوم المتداولة 100,000 جنيه، والمخزون 50,000 جنيه، ونسبة التداول 2.2. فما نسبة التداول السريع؟",
 o:["1.16","1.4","1.7","2.43"],
 a:2,
 why:"الأصول المتداولة = 220,000. النسبة السريعة = (220,000 - 50,000) ÷ 100,000 = 1.7."
 },
+
 {
 q:"تكاليف ثابتة سنوية 100,000 جنيه، والمبيعات 15,000 وحدة، وهامش المساهمة للوحدة 20 جنيهًا. درجة الرفع التشغيلي تساوي:",
 o:["2.3 مرة","1.5 مرة","2 مرة","0.75 مرة"],
 a:1,
 why:"هامش المساهمة الكلي = 300,000. الرفع التشغيلي = 300,000 ÷ 200,000 = 1.5 مرة."
 },
+
 {
 q:"تحديد الأهداف المالية المستقبلية طويلة وقصيرة الأجل للمنظمة وطرق تحقيقها يُعرف بـ:",
 o:["التنبؤ المالي","التخطيط المالي","الرفع المالي","الإدارة المالية"],
 a:1,
 why:"التخطيط المالي يحدد الأهداف المالية والوسائل والموارد اللازمة لتحقيقها."
 },
+
 {
 q:"أي العبارات التالية عن الأشكال المختلفة لمنظمات الأعمال غير صحيحة وفقًا للمادة؟",
 o:[
@@ -431,36 +565,42 @@ o:[
 a:1,
 why:"وفقًا لمفتاح الإجابة بالمادة، العبارة غير الصحيحة هي أن شركات الأشخاص تعاني من مشكلات الوكالة."
 },
+
 {
 q:"صافي ربح شركة 150,000 جنيه، وعدد الأسهم 25,000 سهم، وسعر السهم السوقي 96 جنيهًا. مضاعف السعر يساوي:",
 o:["11 مرة","13 مرة","16 مرة","20 مرة"],
 a:2,
 why:"ربحية السهم = 6 جنيهات. مضاعف السعر = 96 ÷ 6 = 16 مرة."
 },
+
 {
 q:"الربح التشغيلي 200,000 جنيه، والقروض 100,000 جنيه بفائدة سنوية 17%. درجة الرفع المالي تساوي تقريبًا:",
 o:["0.78 مرة","1.1 مرة","1.6 مرة","2 مرة"],
 a:1,
 why:"الفوائد = 17,000. درجة الرفع المالي = 200,000 ÷ 183,000 ≈ 1.1 مرة."
 },
+
 {
 q:"إيجارات سنوية 43,000 جنيه وفواتير كهرباء 17,000 جنيه. تكلفة المواد الخام للوحدة 14 جنيهًا وسعر بيعها 26 جنيهًا. ما المبيعات اللازمة لتحقيق ربح 120,000 جنيه؟",
 o:["15,000 وحدة","230,000 جنيه","390,000 جنيه","4,500 وحدة"],
 a:2,
 why:"التكاليف الثابتة = 60,000. الوحدات المطلوبة = 15,000 وحدة. قيمة المبيعات = 390,000 جنيه."
 },
+
 {
 q:"المفهوم الذي يعبر عن قدرة المنشأة على استخدام الأصول ذات التكاليف الثابتة لتعظيم أثر تغير المبيعات على الربح التشغيلي هو:",
 o:["تحليل التعادل","الرفع الكلي","الرفع التشغيلي","الرفع المالي"],
 a:2,
 why:"الرفع التشغيلي يرتبط بالتكاليف التشغيلية الثابتة وتأثير تغير المبيعات على الربح التشغيلي."
 },
+
 {
 q:"إيرادات المبيعات 150 مليون جنيه، وهامش الربح 5%، وإجمالي الأصول 50 مليونًا، ومضاعف الملكية 1.6. العائد على الملكية يساوي:",
 o:["11%","16%","19%","24%"],
 a:3,
 why:"صافي الربح = 7.5 مليون. العائد على الأصول = 15%. العائد على الملكية = 15% × 1.6 = 24%."
 },
+
 {
 q:"من الوسائل التي يمكن أن تحفز إدارة الشركة المساهمة على تعظيم ثروة المساهمين:",
 o:[
@@ -472,186 +612,288 @@ o:[
 a:3,
 why:"التهديد بالاستيلاء على الشركة يمثل آلية رقابية قد تضغط على الإدارة لتحسين الأداء."
 },
+
 {
 q:"متوسط فترة تحصيل حسابات القبض 18 يومًا، وإجمالي المبيعات 84,000 جنيه نصفها آجل. باستخدام سنة 360 يومًا، رصيد حسابات القبض يساوي:",
 o:["1,600 جنيه","2,100 جنيه","4,200 جنيه","6,000 جنيه"],
 a:1,
 why:"المبيعات الآجلة = 42,000. حسابات القبض = (42,000 ÷ 360) × 18 = 2,100 جنيه."
 },
+
 {
 q:"التكاليف الثابتة 215,000 جنيه، والتكلفة المتغيرة للوحدة 135 جنيهًا، وسعر البيع 220 جنيهًا. بعد تخفيض التكاليف الثابتة 12%، كمية التعادل تساوي تقريبًا:",
 o:["1,990 وحدة","1,788 وحدة","2,226 وحدة","2,643 وحدة"],
 a:2,
 why:"التكاليف الثابتة الجديدة = 189,200. كمية التعادل = 189,200 ÷ 85 ≈ 2,226 وحدة."
 },
+
 {
 q:"من أمثلة الحوافز التي قد يحصل عليها المديرون عند تحقيق مستويات أداء مرتفعة بهدف تعظيم ثروة المساهمين:",
-o:["خيارات شراء الأسهم","الشراء الائتماني","زيادة سعر السهم","التهديد بالفصل"],
+o:[
+"خيارات شراء الأسهم",
+"الشراء الائتماني",
+"زيادة سعر السهم",
+"التهديد بالفصل"
+],
 a:0,
 why:"خيارات شراء الأسهم تربط جزءًا من منفعة المدير بأداء السهم وقيمة الشركة."
 }
+
 ];
 
-const $=id=>document.getElementById(id);
-const letters=["أ","ب","ج","د"];
+const $ = id => document.getElementById(id);
+const letters = ["أ","ب","ج","د"];
 
 let current=0;
 let answers=Array(QUESTIONS.length).fill(null);
-let remaining=30*60;
+let remaining=1800;
 let clock=null;
 let finished=false;
 let studentName="";
 
+$("totalMetric").textContent=QUESTIONS.length;
+$("degreeMetric").textContent=QUESTIONS.length;
+
+function showScreen(id){
+ document.querySelectorAll(".screen").forEach(s=>{
+  s.classList.toggle("active",s.id===id);
+ });
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
 function formatTime(s){
-return String(Math.floor(s/60)).padStart(2,"0")+":"+
-String(s%60).padStart(2,"0");
+ return String(Math.floor(s/60)).padStart(2,"0")+":"+
+        String(s%60).padStart(2,"0");
 }
 
 function startExam(){
-studentName=$("student").value.trim();
-if(!studentName){
-$("student").focus();
-alert("من فضلك اكتب اسم الطالب أولاً.");
-return;
-}
 
-$("intro").style.display="none";
-$("exam").style.display="block";
-$("studentLabel").textContent="الطالب: "+studentName;
-renderQuestion();
+ studentName=$("student").value.trim();
 
-clock=setInterval(()=>{
-remaining--;
-$("timer").textContent=formatTime(remaining);
+ if(!studentName){
+  $("student").focus();
+  alert("من فضلك اكتب اسم الطالب أولاً.");
+  return;
+ }
 
-if(remaining<=180)$("timer").classList.add("warning");
-if(remaining<=0)finishExam(true);
-},1000);
+ current=0;
+ answers=Array(QUESTIONS.length).fill(null);
+ remaining=1800;
+ finished=false;
+
+ $("studentLabel").textContent="الطالب: "+studentName;
+ $("timer").textContent="30:00";
+ $("timer").classList.remove("warning");
+
+ showScreen("exam");
+ renderQuestion();
+
+ clearInterval(clock);
+
+ clock=setInterval(()=>{
+  remaining--;
+
+  $("timer").textContent=formatTime(remaining);
+
+  if(remaining<=180){
+   $("timer").classList.add("warning");
+  }
+
+  if(remaining<=0){
+   finishExam(true);
+  }
+
+ },1000);
 }
 
 function renderQuestion(){
-const q=QUESTIONS[current];
-$("counter").textContent=`السؤال ${current+1} من ${QUESTIONS.length}`;
-$("qnum").textContent=String(current+1).padStart(2,"0");
-$("question").textContent=q.q;
-$("options").innerHTML="";
 
-q.o.forEach((option,index)=>{
-const button=document.createElement("button");
-button.className="option"+(answers[current]===index?" selected":"");
+ const q=QUESTIONS[current];
 
-const letter=document.createElement("span");
-letter.className="letter";
-letter.textContent=letters[index];
+ $("counter").textContent=
+  `السؤال ${current+1} من ${QUESTIONS.length}`;
 
-const text=document.createElement("span");
-text.textContent=option;
+ $("qnum").textContent=
+  `${String(current+1).padStart(2,"0")} / ${QUESTIONS.length}`;
 
-button.append(letter,text);
-button.onclick=()=>{
-answers[current]=index;
-renderQuestion();
-};
-$("options").appendChild(button);
-});
+ $("question").textContent=q.q;
+ $("options").innerHTML="";
 
-const count=answers.filter(a=>a!==null).length;
-$("answered").textContent="تمت الإجابة: "+count+" / "+QUESTIONS.length;
-$("progress").style.width=(count/QUESTIONS.length*100)+"%";
-$("prev").disabled=current===0;
-$("next").disabled=current===QUESTIONS.length-1;
+ q.o.forEach((option,index)=>{
 
-$("dots").innerHTML="";
-QUESTIONS.forEach((q,index)=>{
-const dot=document.createElement("button");
-dot.className="dot"+(answers[index]!==null?" done":"")+(index===current?" current":"");
-dot.textContent=index+1;
-dot.onclick=()=>{current=index;renderQuestion()};
-$("dots").appendChild(dot);
-});
+  const b=document.createElement("button");
+  b.type="button";
+
+  b.className="option"+
+   (answers[current]===index?" selected":"");
+
+  const l=document.createElement("span");
+  l.className="letter";
+  l.textContent=letters[index];
+
+  const t=document.createElement("span");
+  t.textContent=option;
+
+  b.append(l,t);
+
+  b.onclick=()=>{
+   answers[current]=index;
+   renderQuestion();
+  };
+
+  $("options").append(b);
+ });
+
+ const count=answers.filter(a=>a!==null).length;
+
+ $("answered").textContent=
+  `${count} من ${QUESTIONS.length} تمت الإجابة`;
+
+ $("progress").style.width=
+  (count/QUESTIONS.length*100)+"%";
+
+ $("prev").disabled=current===0;
+ $("next").disabled=current===QUESTIONS.length-1;
+
+ $("dots").innerHTML="";
+
+ QUESTIONS.forEach((_,i)=>{
+
+  const d=document.createElement("button");
+  d.type="button";
+
+  d.className="dot"+
+   (answers[i]!==null?" done":"")+
+   (i===current?" current":"");
+
+  d.textContent=i+1;
+  d.setAttribute("aria-label","السؤال "+(i+1));
+
+  d.onclick=()=>{
+   current=i;
+   renderQuestion();
+  };
+
+  $("dots").append(d);
+
+ });
 }
 
 function finishExam(auto=false){
-if(finished)return;
 
-if(!auto){
-const unanswered=answers.filter(a=>a===null).length;
-let message="هل تريد تسليم الاختبار نهائيًا؟";
-if(unanswered>0)message+=`\nلم تجب عن ${unanswered} سؤال.`;
-if(!confirm(message))return;
+ if(finished)return;
+
+ if(!auto){
+
+  const unanswered=answers.filter(a=>a===null).length;
+
+  let msg="هل تريد تسليم الاختبار نهائيًا؟";
+
+  if(unanswered){
+   msg+=`\nلم تجب عن ${unanswered} سؤال.`;
+  }
+
+  if(!confirm(msg))return;
+ }
+
+ finished=true;
+ clearInterval(clock);
+
+ let correct=0;
+ let blank=0;
+
+ QUESTIONS.forEach((q,i)=>{
+  if(answers[i]===null)blank++;
+  else if(answers[i]===q.a)correct++;
+ });
+
+ const wrong=QUESTIONS.length-correct-blank;
+ const pct=Math.round(correct/QUESTIONS.length*100);
+
+ $("score").textContent=pct+"%";
+ $("scoreRing").style.setProperty("--score",pct+"%");
+
+ $("correctCount").textContent=correct;
+ $("wrongCount").textContent=wrong;
+ $("blankCount").textContent=blank;
+
+ $("resultTitle").textContent=auto?
+  "انتهى الوقت وتم تسليم إجاباتك":
+  "تم تسليم الاختبار بنجاح";
+
+ $("resultMessage").textContent=
+  `${studentName}، حصلت على ${correct} من ${QUESTIONS.length} درجات.`;
+
+ $("review").innerHTML="";
+
+ QUESTIONS.forEach((q,i)=>{
+
+  const item=document.createElement("div");
+  item.className="reviewitem";
+
+  const h=document.createElement("h4");
+  h.textContent=`${i+1}. ${q.q}`;
+  item.append(h);
+
+  const r=document.createElement("div");
+
+  if(answers[i]===q.a){
+   r.className="correct";
+   r.textContent="✓ إجابتك صحيحة";
+  }else{
+   r.className="wrong";
+   r.textContent=answers[i]===null?
+    "لم تتم الإجابة":
+    `✕ إجابتك: ${letters[answers[i]]} — ${q.o[answers[i]]}`;
+  }
+
+  item.append(r);
+
+  const c=document.createElement("div");
+  c.className="explain";
+  c.textContent=
+   `الإجابة الصحيحة: ${letters[q.a]} — ${q.o[q.a]}`;
+  item.append(c);
+
+  const e=document.createElement("div");
+  e.className="explain";
+  e.textContent=q.why;
+  item.append(e);
+
+  $("review").append(item);
+
+ });
+
+ showScreen("result");
 }
 
-finished=true;
-clearInterval(clock);
-$("exam").style.display="none";
-$("result").style.display="block";
+$("start").addEventListener("click",startExam);
 
-let correct=0,blank=0;
-QUESTIONS.forEach((q,i)=>{
-if(answers[i]===null)blank++;
-else if(answers[i]===q.a)correct++;
-});
-
-const wrong=QUESTIONS.length-correct-blank;
-const percentage=Math.round(correct/QUESTIONS.length*100);
-
-$("score").textContent=percentage+"%";
-$("correctCount").textContent=correct;
-$("wrongCount").textContent=wrong;
-$("blankCount").textContent=blank;
-
-$("resultTitle").textContent=auto?
-"انتهى الوقت وتم تسليم إجاباتك":"تم تسليم الاختبار بنجاح";
-
-$("resultMessage").textContent=
-`${studentName}، حصلت على ${correct} من ${QUESTIONS.length} درجات.`;
-
-$("review").innerHTML="<h3>مراجعة الإجابات</h3>";
-
-QUESTIONS.forEach((q,index)=>{
-const item=document.createElement("div");
-item.className="reviewitem";
-
-const title=document.createElement("h4");
-title.textContent=(index+1)+". "+q.q;
-item.appendChild(title);
-
-const response=document.createElement("div");
-if(answers[index]===q.a){
-response.className="correct";
-response.textContent="✓ إجابتك صحيحة";
-}else{
-response.className="wrong";
-response.textContent=answers[index]===null?
-"لم تتم الإجابة":
-"✕ إجابتك: "+letters[answers[index]]+" — "+q.o[answers[index]];
-}
-item.appendChild(response);
-
-const correctAnswer=document.createElement("div");
-correctAnswer.className="explain";
-correctAnswer.textContent=
-"الإجابة الصحيحة: "+letters[q.a]+" — "+q.o[q.a];
-item.appendChild(correctAnswer);
-
-const explanation=document.createElement("div");
-explanation.className="explain";
-explanation.textContent=q.why;
-item.appendChild(explanation);
-
-$("review").appendChild(item);
-});
-
-window.scrollTo({top:0,behavior:"smooth"});
-}
-
-$("start").onclick=startExam;
 $("student").addEventListener("keydown",e=>{
-if(e.key==="Enter")startExam();
+ if(e.key==="Enter")startExam();
 });
-$("prev").onclick=()=>{if(current>0){current--;renderQuestion()}};
-$("next").onclick=()=>{if(current<QUESTIONS.length-1){current++;renderQuestion()}};
+
+$("prev").onclick=()=>{
+ if(current>0){
+  current--;
+  renderQuestion();
+ }
+};
+
+$("next").onclick=()=>{
+ if(current<QUESTIONS.length-1){
+  current++;
+  renderQuestion();
+ }
+};
+
 $("submit").onclick=()=>finishExam(false);
+
+$("restart").onclick=()=>{
+ clearInterval(clock);
+ showScreen("intro");
+};
+
 </script>
 </body>
 </html>
