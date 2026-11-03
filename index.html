@@ -3,637 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#073B43">
+<meta name="theme-color" content="#071F2B">
 <title>اختبار الإدارة المالية | الإدارة ببساطة</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --navy:#073B43;
-  --navy2:#0B515B;
-  --teal:#079EAA;
-  --teal-dark:#078D83;
-  --mint:#B8F1E7;
-  --mint-light:#E8FAF6;
-  --ink:#173D43;
-  --muted:#71878B;
-  --line:#DCEBEC;
-  --paper:#FFFFFF;
-  --bg:#F2F8F8;
-  --red:#D94D5C;
-  --green:#078B70;
-  --shadow:0 12px 34px rgba(7,59,67,.07);
-  --font-ar:"IBM Plex Sans Arabic",sans-serif;
-  --font-en:"Inter",sans-serif;
-}
-
+:root{--navy:#071F2B;--navy2:#0B3440;--teal:#12B8A6;--teal-dark:#078F83;--ink:#153640;--muted:#668087;--line:#D7EAE7;--bg:#F2F9F8;--red:#D94D5C;--green:#078B70;--amber:#F2B705;--shadow:0 14px 38px rgba(7,31,43,.08);--font-ar:"IBM Plex Sans Arabic",sans-serif;--font-en:"Inter",sans-serif}
 *{box-sizing:border-box}
-
-html{
-  scroll-behavior:smooth;
-  direction:rtl;
-}
-
-body{
-  margin:0;
-  font-family:var(--font-ar);
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 10% 10%,rgba(18,184,166,.045),transparent 25%),
-    var(--bg);
-  min-height:100vh;
-  line-height:1.8;
-  font-weight:500;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-
-button,input{font:inherit}
-button{cursor:pointer}
+html{scroll-behavior:smooth;direction:rtl}
+body{margin:0;font-family:var(--font-ar);color:var(--ink);background:radial-gradient(circle at 8% 8%,rgba(18,184,166,.07),transparent 24%),radial-gradient(circle at 95% 80%,rgba(18,184,166,.045),transparent 26%),var(--bg);min-height:100vh;line-height:1.8;font-weight:500;-webkit-font-smoothing:antialiased;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-touch-callout:none}
+input{user-select:text;-webkit-user-select:text}
+img{-webkit-user-drag:none;pointer-events:none}
+button,input{font:inherit}button{cursor:pointer}
 .container{width:min(1160px,calc(100% - 36px));margin:auto}
 h1,h2,h3,h4,p{margin-top:0}
-
-button:focus-visible,input:focus-visible{
-  outline:3px solid #12B8A677;
-  outline-offset:3px;
-}
-
-[dir="ltr"],.english,.timer,.score-value,.question-number,
-.stat strong,.result-stat b,.brand-sub,.eyebrow{
-  font-family:var(--font-en),var(--font-ar);
-  unicode-bidi:isolate;
-  font-variant-numeric:tabular-nums;
-}
-
-/* HEADER */
-.header{
-  min-height:82px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:14px;
-}
+button:focus-visible,input:focus-visible{outline:3px solid rgba(18,184,166,.55);outline-offset:3px}
+[dir="ltr"],.timer,.score-value,.question-number,.result-stat b,.brand-sub,.eyebrow,.grade-badge{font-family:var(--font-en),var(--font-ar);unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.header{min-height:86px;display:flex;justify-content:space-between;align-items:center;gap:14px}
 .brand{display:flex;align-items:center;gap:13px}
-.brand img{
-  width:54px;height:54px;object-fit:contain;
-  background:white;border-radius:13px;padding:3px;
-  box-shadow:0 5px 16px #073B4310;
-}
-.brand-name{
-  font-size:20px;font-weight:800;color:var(--navy);
-  line-height:1.5;
-}
-.brand-sub{
-  display:block;font-size:9px;font-weight:800;
-  color:var(--teal-dark);letter-spacing:1.7px;
-  margin-top:2px;text-align:right;
-}
-.header-tag{
-  font-size:12px;font-weight:700;color:#42616B;
-  background:#EAF3F3;border:1px solid #DDE9E9;
-  border-radius:30px;padding:9px 15px;
-  white-space:nowrap;
-}
-
-/* HERO */
-.hero{
-  position:relative;
-  overflow:hidden;
-  min-height:490px;
-  border-radius:26px;
-  color:white;
-  background:
-    radial-gradient(ellipse at 18% 20%,rgba(18,184,166,.22),transparent 35%),
-    linear-gradient(120deg,#073B43 0%,#0A303C 60%,#10444B 100%);
-  box-shadow:0 24px 65px rgba(7,31,43,.13);
-  display:grid;
-  grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);
-  align-items:center;
-  gap:30px;
-  padding:55px 60px;
-}
-.hero:before{
-  content:"";
-  position:absolute;
-  width:480px;height:480px;
-  border:1px solid rgba(184,241,231,.09);
-  border-radius:50%;
-  left:-180px;bottom:-280px;
-  box-shadow:0 0 0 35px rgba(184,241,231,.025),
-             0 0 0 75px rgba(184,241,231,.02);
-}
+.brand img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:15px;padding:3px;box-shadow:0 6px 18px rgba(7,31,43,.10)}
+.brand-name{font-size:21px;font-weight:800;color:var(--navy);line-height:1.5}
+.brand-sub{display:block;font-size:9px;font-weight:800;color:var(--teal-dark);letter-spacing:1.7px;margin-top:2px;text-align:right}
+.header-tag{font-size:12px;font-weight:800;color:var(--navy2);background:#E8F6F3;border:1px solid #D4ECE6;border-radius:30px;padding:9px 15px;white-space:nowrap}
+.hero{position:relative;overflow:hidden;min-height:465px;border-radius:28px;color:#fff;background:radial-gradient(ellipse at 17% 18%,rgba(18,184,166,.25),transparent 36%),radial-gradient(ellipse at 90% 90%,rgba(18,184,166,.10),transparent 30%),linear-gradient(120deg,#071F2B 0%,#0A303C 62%,#10434A 100%);box-shadow:0 25px 70px rgba(7,31,43,.16);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);align-items:center;gap:30px;padding:52px 60px}
+.hero:before{content:"";position:absolute;width:480px;height:480px;border:1px solid rgba(184,241,231,.10);border-radius:50%;left:-180px;bottom:-280px;box-shadow:0 0 0 35px rgba(184,241,231,.025),0 0 0 75px rgba(184,241,231,.02)}
 .hero-content{position:relative;z-index:2;min-width:0}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  color:#8BE6D9;font-size:11px;font-weight:800;
-  letter-spacing:1.8px;direction:ltr;
-}
-.eyebrow:before{
-  content:"";width:25px;height:2px;background:var(--teal);
-}
-.hero h1{
-  font-size:clamp(42px,5vw,66px);
-  line-height:1.4;margin:20px 0 10px;
-  font-weight:800;letter-spacing:-1px;
-}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#8BE6D9;font-size:11px;font-weight:800;letter-spacing:1.8px;direction:ltr}
+.eyebrow:before{content:"";width:25px;height:2px;background:var(--teal)}
+.hero h1{font-size:clamp(42px,5vw,66px);line-height:1.4;margin:20px 0 10px;font-weight:800;letter-spacing:-1px}
 .hero h1 span{color:#70DECF}
-
-.hero-description{
-  max-width:570px;
-  color:#D5E7E8;
-  font-size:17px;
-  font-weight:600;
-  line-height:2.2;
-  margin:17px 0 25px;
-}
-.hero-description strong{
-  color:#8BE6D9;
-  font-weight:800;
-}
-.instructor{
-  color:#E7F5F3;font-size:17px;font-weight:800;
-  margin:20px 0 26px;
-}
-.instructor span{color:#70DECF}
-
-.stats{
-  display:flex;gap:12px;flex-wrap:wrap;margin:26px 0;
-}
-.stat{
-  min-width:115px;padding:13px 17px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.065);
-  border-radius:14px;
-  backdrop-filter:blur(8px);
-}
-.stat strong{
-  display:block;font-size:24px;font-weight:800;
-  color:#79E1D2;direction:ltr;text-align:right;
-  line-height:1.5;
-}
-.stat small{font-size:12px;color:#C8DDDF;font-weight:700}
-
-.student-field{max-width:440px;margin-top:25px}
-.student-field label{
-  display:block;font-size:14px;font-weight:700;
-  color:#E0EEEE;margin-bottom:9px;
-}
-.student-field input{
-  width:100%;height:55px;border-radius:12px;
-  padding:0 16px;background:#fff;color:var(--ink);
-  border:2px solid transparent;outline:none;
-  font-size:15px;font-weight:600;
-  transition:.2s;
-}
-.student-field input:focus{
-  border-color:var(--teal);
-  box-shadow:0 0 0 4px #12B8A633;
-}
-.start-btn{
-  width:100%;height:56px;margin-top:12px;
-  border:0;border-radius:12px;
-  color:#062A32;
-  background:linear-gradient(110deg,#8CEBDD,#22BDAA);
-  font-weight:800;font-size:16px;
-  box-shadow:0 10px 25px rgba(18,184,166,.23);
-  transition:.2s;
-}
+.hero-description{max-width:590px;color:#E0EEEE;font-size:18px;font-weight:700;line-height:2.25;margin:18px 0 24px}
+.hero-description strong{color:#8BE6D9;font-weight:800}
+.student-field{max-width:440px;margin-top:28px}
+.student-field label{display:block;font-size:14px;font-weight:800;color:#E0EEEE;margin-bottom:9px}
+.student-field input{width:100%;height:56px;border-radius:13px;padding:0 16px;background:#fff;color:var(--ink);border:2px solid transparent;outline:none;font-size:15px;font-weight:600;transition:.2s}
+.student-field input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(18,184,166,.22)}
+.start-btn{width:100%;height:58px;margin-top:12px;border:0;border-radius:13px;color:#062A32;background:linear-gradient(110deg,#9AF0E3,#12B8A6);font-weight:800;font-size:17px;box-shadow:0 10px 28px rgba(18,184,166,.25);transition:.2s}
 .start-btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
-.hero-note{
-  font-size:11px;color:#C0D5D8;
-  line-height:1.9;margin-top:14px;font-weight:600;
-}
-
-/* HERO ART */
-.hero-art{
-  position:relative;min-height:330px;
-  display:flex;align-items:center;justify-content:center;
-  direction:ltr;
-}
-.art-orbit{
-  width:300px;height:300px;border-radius:50%;
-  border:1px solid rgba(130,225,211,.2);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;
-  box-shadow:0 0 0 25px rgba(130,225,211,.025),
-             0 0 0 55px rgba(130,225,211,.018);
-}
-.art-core{
-  width:190px;height:190px;border-radius:32px;
-  transform:rotate(-8deg);
-  background:linear-gradient(145deg,#164B55,#0D303B);
-  border:1px solid rgba(130,225,211,.3);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 25px 55px #0004;
-}
+.hero-note{font-size:12px;color:#C0D5D8;line-height:1.9;margin-top:14px;font-weight:700}
+.hero-art{position:relative;min-height:330px;display:flex;align-items:center;justify-content:center;direction:ltr}
+.art-orbit{width:300px;height:300px;border-radius:50%;border:1px solid rgba(130,225,211,.22);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 0 0 25px rgba(130,225,211,.025),0 0 0 55px rgba(130,225,211,.018)}
+.art-core{width:190px;height:190px;border-radius:32px;transform:rotate(-8deg);background:linear-gradient(145deg,#164B55,#0D303B);border:1px solid rgba(130,225,211,.34);display:flex;align-items:center;justify-content:center;box-shadow:0 25px 55px #0004}
 .art-core svg{width:125px;height:125px}
-.float-card{
-  position:absolute;background:#F9FFFF;color:var(--navy);
-  border-radius:13px;padding:12px 16px;
-  box-shadow:0 14px 35px #0003;
-  font-size:12px;font-weight:800;
-  direction:rtl;
-}
-.float-card b{
-  display:block;color:var(--teal-dark);
-  font-family:var(--font-en);
-  font-size:19px;font-weight:800;margin-bottom:3px;
-}
-.float-one{top:25px;right:-4px}
-.float-two{bottom:35px;left:-3px}
-.float-three{
-  bottom:8px;right:35px;
-  background:#123D47;color:#D9F6F0;
-  border:1px solid #3B7075;
-  font-family:var(--font-en);
-  font-size:10px;letter-spacing:.5px;
-  direction:ltr;
-}
-
-/* EXAM */
+.float-card{position:absolute;background:#F9FFFF;color:var(--navy);border-radius:13px;padding:12px 16px;box-shadow:0 14px 35px #0003;font-size:12px;font-weight:800;direction:rtl}
+.float-card b{display:block;color:var(--teal-dark);font-family:var(--font-en);font-size:19px;font-weight:800;margin-bottom:3px}
+.float-one{top:25px;right:-4px}.float-two{bottom:35px;left:-3px}
+.float-three{bottom:8px;right:35px;background:#123D47;color:#D9F6F0;border:1px solid #3B7075;font-family:var(--font-en);font-size:10px;letter-spacing:.5px;direction:ltr}
 #exam,#result{display:none}
-
-.exam-top{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;background:white;border:1px solid var(--line);
-  border-radius:18px;padding:18px 22px;margin:20px 0;
-  box-shadow:var(--shadow);
-}
-.exam-brand{display:flex;align-items:center;gap:12px}
-.exam-brand img{width:43px;height:43px;object-fit:contain}
-.exam-brand strong{display:block;font-size:16px;font-weight:800}
-.exam-brand small{
-  display:block;font-family:var(--font-en);
-  font-size:9px;font-weight:800;color:var(--muted);
-  letter-spacing:1px;direction:ltr;
-}
-.timer-box{text-align:center}
-.timer-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:3px}
-.timer{
-  font-size:29px;font-weight:800;
-  color:var(--teal-dark);direction:ltr;
-  font-variant-numeric:tabular-nums;
-}
-.timer.warning{color:var(--red);animation:pulse 1s infinite}
-@keyframes pulse{50%{opacity:.55}}
-
-.student-strip{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin:25px 2px 12px;
-  font-size:13px;color:#526C74;font-weight:600;
-}
+.exam-top{position:sticky;top:10px;z-index:50;display:flex;justify-content:center;align-items:center;margin:20px 0}
+.timer-box{min-width:340px;max-width:100%;text-align:center;padding:16px 36px 18px;border:1px solid rgba(18,184,166,.34);border-radius:20px;background:radial-gradient(ellipse at 50% 0%,rgba(18,184,166,.17),transparent 72%),linear-gradient(145deg,#F2FFFC,#E5F8F4);box-shadow:0 0 0 5px rgba(18,184,166,.055),0 10px 30px rgba(7,31,43,.08),0 0 34px rgba(18,184,166,.14)}
+.timer-label{font-size:15px;color:#42666B;font-weight:800;margin-bottom:2px;letter-spacing:.2px}
+.timer{font-size:clamp(72px,9vw,104px);font-weight:800;line-height:1.1;color:var(--navy);direction:ltr;letter-spacing:3px;font-variant-numeric:tabular-nums;text-shadow:0 2px 0 rgba(18,184,166,.10);white-space:nowrap}
+.timer.warning{color:#C72F43;animation:timerPulse .8s infinite;text-shadow:0 0 18px rgba(217,77,92,.20)}
+.timer-box.urgent{border-color:rgba(217,77,92,.5);background:linear-gradient(145deg,#FFF5F5,#FFE8EA);box-shadow:0 0 0 5px rgba(217,77,92,.07),0 10px 30px rgba(7,31,43,.08)}
+.timer-box.urgent .timer-label{color:#A93B49}
+@keyframes timerPulse{50%{opacity:.72}}
+.timebar{height:6px;background:#E8EFF0;border-radius:6px;overflow:hidden;margin-top:10px}
+.timebar-fill{height:100%;width:100%;background:linear-gradient(90deg,#078F83,#12B8A6);border-radius:6px;transition:width 1s linear}
+.student-strip{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:25px 2px 12px;font-size:14px;color:#526C74;font-weight:700}
 .student-strip strong{color:var(--navy);font-weight:800}
-.progress-track{
-  height:8px;background:#E2EAEC;border-radius:20px;
-  overflow:hidden;margin-bottom:22px;
-}
-.progress-fill{
-  height:100%;width:0;
-  background:linear-gradient(90deg,#078D83,#54D8C6);
-  border-radius:20px;transition:width .3s;
-}
-.exam-layout{
-  display:grid;grid-template-columns:minmax(0,1fr) 235px;
-  gap:18px;align-items:start;
-}
-
-/* GLOWING QUESTION CARD */
-.question-card{
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  background:
-    radial-gradient(ellipse at 100% 0%,rgba(18,184,166,.13),transparent 42%),
-    radial-gradient(ellipse at 0% 100%,rgba(184,241,231,.38),transparent 45%),
-    linear-gradient(145deg,#FFFFFF 0%,#F5FFFC 55%,#EFFAF8 100%);
-  border:1px solid #A9E4D9;
-  border-radius:22px;
-  padding:35px;
-  min-height:390px;
-  box-shadow:
-    0 12px 35px rgba(7,59,67,.075),
-    0 0 0 4px rgba(18,184,166,.055),
-    0 0 28px rgba(18,184,166,.12);
-  transition:box-shadow .25s,border-color .25s;
-}
-.question-card:before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  width:230px;height:230px;
-  border-radius:50%;
-  background:rgba(18,184,166,.075);
-  filter:blur(38px);
-  top:-115px;left:-70px;
-  pointer-events:none;
-}
-.question-card:after{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  width:190px;height:190px;
-  border-radius:50%;
-  background:rgba(184,241,231,.30);
-  filter:blur(35px);
-  bottom:-110px;right:-70px;
-  pointer-events:none;
-}
-.question-top{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin-bottom:22px;
-}
-.question-label{
-  color:#087F76;
-  background:linear-gradient(120deg,#DDF8F1,#C9F1E8);
-  border:1px solid #B7E8DC;
-  border-radius:30px;
-  padding:8px 15px;
-  font-size:13px;font-weight:800;
-}
-.question-number{
-  font-size:13px;font-weight:800;color:#6D898D;
-  direction:ltr;
-}
-.question-text{
-  font-size:clamp(20px,2.3vw,25px);
-  line-height:2;
-  font-weight:800;
-  color:var(--navy);
-  margin:0 0 27px;
-  letter-spacing:-.3px;
-}
+.progress-track{height:9px;background:#DFECEA;border-radius:20px;overflow:hidden;margin-bottom:22px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#078F83,#12B8A6,#72E1D2);border-radius:20px;transition:width .3s}
+.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 235px;gap:18px;align-items:start}
+.question-card{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 100% 0%,rgba(18,184,166,.15),transparent 42%),radial-gradient(ellipse at 0% 100%,rgba(184,241,231,.42),transparent 45%),linear-gradient(145deg,#FFFFFF 0%,#F5FFFC 55%,#EFFAF8 100%);border:1px solid #8DDCCD;border-radius:23px;padding:36px;min-height:390px;box-shadow:0 13px 36px rgba(7,31,43,.075),0 0 0 4px rgba(18,184,166,.075),0 0 32px rgba(18,184,166,.17)}
+.question-card:before,.question-card:after{content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(38px)}
+.question-card:before{width:230px;height:230px;background:rgba(18,184,166,.09);top:-115px;left:-70px}
+.question-card:after{width:190px;height:190px;background:rgba(184,241,231,.34);bottom:-110px;right:-70px}
+.question-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.question-label{color:#087F76;background:linear-gradient(120deg,#DDF8F1,#C9F1E8);border:1px solid #B7E8DC;border-radius:30px;padding:8px 15px;font-size:13px;font-weight:800}
+.question-number{min-width:82px;text-align:center;padding:7px 13px;border-radius:11px;background:var(--navy);color:#fff;border:1px solid #174B57;font-size:14px;font-weight:800;direction:ltr;box-shadow:0 5px 14px rgba(7,31,43,.16)}
+.flag-btn{background:#F3FAF8;border:1px solid #CFE7E2;border-radius:9px;padding:7px 12px;font-size:12px;font-weight:800;color:#42666B;transition:.15s}
+.flag-btn:hover{background:#E8F6F3}
+.flag-btn.active{background:#FFF4D6;border-color:var(--amber);color:#8A6D00}
+.question-text{font-size:clamp(20px,2.3vw,25px);line-height:2;font-weight:800;color:var(--navy);margin:0 0 27px;letter-spacing:-.3px}
 .options{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.option{
-  display:flex;align-items:center;gap:13px;
-  text-align:right;min-height:68px;padding:13px 15px;
-  border:1px solid #D4E9E5;
-  border-radius:14px;
-  background:rgba(255,255,255,.86);
-  color:#24464C;
-  font-size:15px;font-weight:700;line-height:1.9;
-  transition:transform .18s,border-color .18s,background .18s,box-shadow .18s;
-  box-shadow:0 3px 10px rgba(7,59,67,.025);
-}
-.option:hover{
-  border-color:#75D7C8;
-  background:#F0FCF8;
-  transform:translateY(-2px);
-  box-shadow:0 7px 18px rgba(18,184,166,.10);
-}
-.option.selected{
-  border:2px solid var(--teal-dark);
-  background:linear-gradient(120deg,#DDF8F1,#EAFBF7);
-  color:#073D42;
-  box-shadow:0 0 0 3px rgba(18,184,166,.10),0 7px 20px rgba(18,184,166,.12);
-}
-.option-letter{
-  flex-shrink:0;width:36px;height:36px;
-  display:grid;place-items:center;border-radius:11px;
-  background:#E7F1F0;color:#42666B;
-  font-weight:800;font-size:15px;
-  transition:.18s;
-}
-.option.selected .option-letter{
-  background:var(--teal-dark);color:white;
-}
-
-/* SIDEBAR */
-.exam-sidebar{
-  background:white;border:1px solid var(--line);
-  border-radius:18px;padding:20px;
-  box-shadow:var(--shadow);
-}
-.sidebar-title{font-weight:800;font-size:15px;margin-bottom:5px;color:var(--navy)}
-.sidebar-sub{font-size:11px;color:var(--muted);margin-bottom:17px;font-weight:600}
-.question-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
-}
-.q-dot{
-  height:38px;border-radius:10px;
-  border:1px solid #DDE9E9;background:#FAFCFC;
-  color:#71838B;font-family:var(--font-en);
-  font-size:12px;font-weight:800;
-  transition:.18s;
-}
+.option{display:flex;align-items:center;gap:13px;text-align:right;min-height:68px;padding:13px 15px;border:1px solid #CFE7E2;border-radius:14px;background:rgba(255,255,255,.92);color:#173D46;font-size:15px;font-weight:700;line-height:1.9;transition:transform .18s,border-color .18s,background .18s,box-shadow .18s;box-shadow:0 3px 10px rgba(7,31,43,.035)}
+.option:hover{border-color:#65D2C2;background:#F0FCF8;transform:translateY(-2px);box-shadow:0 7px 18px rgba(18,184,166,.14)}
+.option.selected{border:2px solid var(--teal-dark);background:linear-gradient(120deg,#DDF8F1,#EAFBF7);color:#073D42;box-shadow:0 0 0 3px rgba(18,184,166,.14),0 7px 22px rgba(18,184,166,.18)}
+.option-letter{flex-shrink:0;width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:#E5F2EF;color:#315D61;font-weight:800;font-size:16px;transition:.18s}
+.option.selected .option-letter{background:var(--teal-dark);color:#fff}
+.exam-sidebar{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.sidebar-title{font-weight:800;font-size:16px;margin-bottom:5px;color:var(--navy)}
+.sidebar-sub{font-size:12px;color:var(--muted);margin-bottom:17px;font-weight:600}
+.question-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.q-dot{height:38px;border-radius:10px;border:1px solid #D7E8E6;background:#FAFCFC;color:#617A80;font-family:var(--font-en);font-size:13px;font-weight:800;transition:.18s}
 .q-dot:hover{border-color:var(--teal);transform:translateY(-1px)}
-.q-dot.done{background:#E5F6F1;color:#07866F;border-color:#B7E5D9}
-.q-dot.current{background:var(--navy);color:white;border-color:var(--navy)}
+.q-dot.done{background:#DDF5EE;color:#087F6D;border-color:#A9E2D4}
+.q-dot.current{background:var(--navy);color:#fff;border-color:var(--navy)}
+.q-dot.flagged{outline:2px solid var(--amber);outline-offset:-2px}
 .legend{display:grid;gap:9px;margin-top:19px}
-.legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);font-weight:600}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:600}
 .legend-dot{width:9px;height:9px;border-radius:3px;background:#E0E9EA}
-.legend-dot.green{background:#B7E5D9}
-.legend-dot.dark{background:var(--navy)}
-
-/* BUTTONS */
-.exam-actions{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin-top:20px;
-}
+.legend-dot.green{background:#A9E2D4}.legend-dot.dark{background:var(--navy)}.legend-dot.amber{background:var(--amber)}
+.exam-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}
 .action-group{display:flex;gap:9px}
-.btn{
-  border:0;border-radius:11px;padding:12px 20px;
-  min-height:47px;font-size:14px;font-weight:800;
-  transition:.2s;
-}
+.btn{border:0;border-radius:11px;padding:12px 20px;min-height:48px;font-size:14px;font-weight:800;transition:.2s}
 .btn:hover{transform:translateY(-1px)}
 .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
-.btn-light{background:white;border:1px solid #DDE7E9;color:#38535C}
-.btn-primary{background:var(--navy);color:white}
+.btn-light{background:#fff;border:1px solid #DDE7E9;color:#294C55}
+.btn-primary{background:var(--navy);color:#fff}
 .btn-primary:hover{background:var(--navy2)}
-.btn-submit{background:var(--red);color:white}
+.btn-submit{background:var(--red);color:#fff}
 .btn-submit:hover{background:#C83E4E}
-.exam-warning{
-  font-size:11px;color:#89999E;text-align:center;
-  margin:20px 0 35px;font-weight:600;
-}
-
-/* RESULTS */
-.result-card{
-  background:white;border:1px solid var(--line);
-  border-radius:22px;padding:35px;
-  box-shadow:var(--shadow);margin:25px 0 45px;
-}
+.exam-warning{font-size:12px;color:#7B9297;text-align:center;margin:20px 0 35px;font-weight:600}
+.resume-banner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:linear-gradient(120deg,#FFF8E1,#FFF4D6);border:1px solid #F2C94C;border-radius:16px;padding:16px 20px;margin:18px 0;box-shadow:0 8px 24px rgba(242,201,76,.15)}
+.resume-banner strong{display:block;color:#7A5E00;font-size:15px;font-weight:800}
+.resume-banner span{display:block;color:#8A6D00;font-size:12px;font-weight:600;margin-top:3px}
+.resume-actions{display:flex;gap:8px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(7,31,43,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;z-index:200;padding:20px}
+.modal-backdrop[hidden]{display:none}
+.modal{background:#fff;border-radius:20px;padding:28px;max-width:440px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.3);text-align:center}
+.modal h3{margin:0 0 18px;color:var(--navy);font-size:20px;font-weight:800}
+.modal-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 18px}
+.modal-stats>div{background:#F3FAF8;border:1px solid #DCEFEB;border-radius:12px;padding:12px 6px}
+.modal-stats b{display:block;font-size:22px;color:var(--navy);font-weight:800}
+.modal-stats span{font-size:11px;color:var(--muted);font-weight:700}
+.modal p{font-size:13px;color:var(--muted);font-weight:600;margin:0 0 18px}
+.modal-actions{display:flex;gap:10px;justify-content:center}
+.modal-actions .btn{flex:1}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#071F2B;color:#fff;padding:12px 22px;border-radius:10px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:999;animation:toastIn .3s ease;max-width:calc(100% - 40px);text-align:center}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,10px)}}
+.result-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:35px;box-shadow:var(--shadow);margin:25px 0 45px}
 .result-heading{text-align:center;padding:15px 0 25px}
-.result-kicker{
-  font-family:var(--font-en);font-size:10px;
-  font-weight:800;color:var(--teal-dark);letter-spacing:2px;
-  direction:ltr;
-}
-.result-heading h2{font-size:29px;font-weight:800;margin:12px 0 5px;color:var(--navy)}
-.result-heading p{font-size:14px;color:var(--muted);font-weight:600}
-.score-circle{
-  width:155px;height:155px;margin:22px auto;
-  border-radius:50%;
-  background:conic-gradient(var(--teal) var(--score),#E8EFF0 0);
-  position:relative;display:grid;place-items:center;
-  box-shadow:0 0 0 7px #E9F8F5,0 0 28px #12B8A622;
-}
-.score-circle:before{
-  content:"";position:absolute;inset:10px;
-  border-radius:50%;background:white;
-}
-.score-value{
-  position:relative;z-index:1;
-  font-size:38px;font-weight:800;color:var(--navy);
-}
-.result-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:12px;max-width:650px;margin:20px auto;
-}
-.result-stat{
-  background:#F3FAF8;border:1px solid #DCEFEB;
-  border-radius:14px;padding:18px 10px;text-align:center;
-}
-.result-stat b{
-  display:block;font-size:26px;font-weight:800;color:var(--navy);
-}
-.result-stat span{font-size:12px;color:var(--muted);font-weight:700}
-.result-actions{text-align:center;margin:25px 0}
+.result-kicker{font-family:var(--font-en);font-size:10px;font-weight:800;color:var(--teal-dark);letter-spacing:2px;direction:ltr}
+.result-heading h2{font-size:30px;font-weight:800;margin:12px 0 5px;color:var(--navy)}
+.result-heading p{font-size:15px;color:var(--muted);font-weight:600}
+.grade-badge{display:inline-grid;place-items:center;min-width:74px;height:74px;border-radius:20px;background:var(--teal-dark);color:#fff;font-family:var(--font-en);font-size:34px;font-weight:800;margin:12px auto 8px;box-shadow:0 10px 24px rgba(7,31,43,.15)}
+.score-circle{width:155px;height:155px;margin:22px auto;border-radius:50%;background:conic-gradient(var(--teal) var(--score),#E8EFF0 0);position:relative;display:grid;place-items:center;box-shadow:0 0 0 7px #E9F8F5,0 0 28px rgba(18,184,166,.15)}
+.score-circle:before{content:"";position:absolute;inset:10px;border-radius:50%;background:#fff}
+.score-value{position:relative;z-index:1;font-size:38px;font-weight:800;color:var(--navy)}
+.score-sub{font-size:14px;color:var(--muted);font-weight:700;margin-top:6px}
+.result-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:750px;margin:20px auto}
+.result-stat{background:#F3FAF8;border:1px solid #DCEFEB;border-radius:14px;padding:18px 10px;text-align:center}
+.result-stat b{display:block;font-size:26px;font-weight:800;color:var(--navy)}
+.result-stat span{font-size:13px;color:var(--muted);font-weight:700}
+.section-title{font-size:19px;font-weight:800;color:var(--navy);margin:30px 0 14px;padding-top:22px;border-top:1px solid var(--line)}
+.category-breakdown{display:grid;gap:12px;margin:0 0 22px}
+.cat-row{background:#F8FCFB;border:1px solid #E2F0EC;border-radius:12px;padding:14px}
+.cat-head{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;gap:10px;flex-wrap:wrap}
+.cat-head span{font-weight:700;color:var(--ink)}
+.cat-head b{font-family:var(--font-en);font-size:13px;color:var(--muted);font-weight:800}
+.cat-bar{height:8px;background:#E8EFF0;border-radius:6px;overflow:hidden}
+.cat-bar>div{height:100%;border-radius:6px;background:#12B8A6;transition:width .6s ease}
+.cat-row.good .cat-bar>div{background:var(--green)}
+.cat-row.ok .cat-bar>div{background:var(--amber)}
+.cat-row.weak .cat-bar>div{background:var(--red)}
+.result-actions{text-align:center;margin:25px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .review{border-top:1px solid var(--line);padding-top:25px}
-.review h3{font-size:20px;font-weight:800;margin:0 0 17px;color:var(--navy)}
-.review-item{
-  border:1px solid var(--line);border-radius:14px;
-  padding:18px;margin:12px 0;background:#FCFDFD;
-}
-.review-question{font-weight:800;font-size:15px;line-height:2;margin-bottom:12px;color:var(--navy)}
+.review h3{font-size:21px;font-weight:800;margin:0 0 17px;color:var(--navy)}
+.review-item{border:1px solid var(--line);border-radius:14px;padding:18px;margin:12px 0;background:#FCFDFD}
+.review-question{font-weight:800;font-size:16px;line-height:2;margin-bottom:12px;color:var(--navy)}
 .review-answer{font-size:14px;line-height:2;margin:5px 0;font-weight:600}
-.correct{color:var(--green);font-weight:800}
-.wrong{color:var(--red);font-weight:800}
-.explanation{
-  border-top:1px dashed #DCE7E8;
-  padding-top:10px;margin-top:10px;
-  font-size:13px;font-weight:500;line-height:2;color:#647A82;
-}
-.footer{
-  text-align:center;color:#8B9A9E;font-size:11px;
-  font-weight:600;padding:15px 0 30px;
-}
-
-/* TABLET */
-@media(max-width:900px){
-  .hero{padding:42px 35px;grid-template-columns:minmax(0,1fr) minmax(220px,.7fr)}
-  .art-orbit{width:230px;height:230px}
-  .art-core{width:150px;height:150px}
-  .exam-layout{grid-template-columns:1fr}
-  .exam-sidebar{order:2}
-  .question-grid{grid-template-columns:repeat(8,1fr)}
-}
-
-/* MOBILE */
-@media(max-width:650px){
-  .container{width:calc(100% - 22px)}
-  .header{min-height:68px}
-  .brand{gap:9px}
-  .brand img{width:43px;height:43px}
-  .brand-name{font-size:16px}
-  .brand-sub{font-size:8px}
-  .header-tag{font-size:10px;padding:7px 10px}
-  .hero{
-    display:flex;flex-direction:column;
-    align-items:stretch;gap:10px;
-    padding:30px 21px;border-radius:22px;min-height:auto;
-  }
-  .hero-content{width:100%}
-  .hero h1{font-size:clamp(38px,10vw,46px);margin:15px 0 5px}
-  .hero-description{font-size:15px;line-height:2.15}
-  .instructor{font-size:15px;margin:15px 0}
-  .stats{gap:8px;margin:20px 0}
-  .stat{flex:1;min-width:0;padding:11px 8px}
-  .stat strong{font-size:19px}
-  .stat small{font-size:10px}
-  .hero-art{min-height:190px;margin:18px 0 5px}
-  .art-orbit{width:165px;height:165px}
-  .art-core{width:112px;height:112px;border-radius:23px}
-  .art-core svg{width:78px;height:78px}
-  .float-card{padding:8px 10px;font-size:10px}
-  .float-card b{font-size:15px}
-  .float-one{top:0;right:0}
-  .float-two{bottom:5px;left:0}
-  .float-three{bottom:0;right:30px}
-
-  .exam-top{padding:13px;border-radius:15px}
-  .exam-brand img{width:36px;height:36px}
-  .exam-brand strong{font-size:13px}
-  .timer{font-size:25px}
-  .student-strip{font-size:11px}
-  .question-card{
-    padding:23px 16px;
-    min-height:350px;
-    border-radius:18px;
-    box-shadow:0 8px 25px rgba(7,59,67,.07),
-               0 0 0 3px rgba(18,184,166,.06),
-               0 0 20px rgba(18,184,166,.12);
-  }
-  .question-text{font-size:19px;line-height:2;font-weight:800}
-  .question-label{font-size:12px}
-  .question-number{font-size:12px}
-  .options{grid-template-columns:1fr;gap:10px}
-  .option{min-height:61px;font-size:14px;padding:11px 12px}
-  .option-letter{width:34px;height:34px}
-  .question-grid{
-    display:flex;
-    overflow-x:auto;
-    gap:8px;
-    padding:3px 1px 9px;
-    scrollbar-width:thin;
-  }
-  .q-dot{flex:0 0 39px;height:39px}
-  .exam-sidebar{padding:16px}
-  .exam-actions{flex-direction:column}
-  .action-group{width:100%}
-  .action-group .btn{flex:1}
-  .btn-submit{width:100%}
-  .result-card{padding:20px 13px}
-  .result-heading h2{font-size:24px}
-  .result-stats{gap:6px}
-  .result-stat{padding:13px 4px}
-  .result-stat b{font-size:21px}
-  .result-stat span{font-size:10px}
-  .review-item{padding:14px}
-  .review-question{font-size:14px}
-  .review-answer{font-size:13px}
-}
-
-/* EXTRA SMALL SCREENS */
-@media(max-width:370px){
-  .brand-name{font-size:13px}
-  .header-tag{font-size:9px}
-  .stats{display:grid;grid-template-columns:1fr}
-  .stat{
-    display:flex;justify-content:space-between;
-    align-items:center;text-align:right;padding:9px 13px;
-  }
-  .hero h1{font-size:37px}
-}
-
-/* ACCESSIBILITY */
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    scroll-behavior:auto!important;
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
-  }
-}
-
-/* PRINT */
-@media print{
-  body{background:white}
-  .header,.exam-actions,.result-actions,.footer{display:none!important}
-  .result-card{box-shadow:none;border:0}
-  .review-item{break-inside:avoid}
-}
+.correct{color:var(--green);font-weight:800}.wrong{color:var(--red);font-weight:800}
+.explanation{border-top:1px dashed #DCE7E8;padding-top:10px;margin-top:10px;font-size:14px;font-weight:500;line-height:2;color:#526F77}
+.footer{text-align:center;color:#81969A;font-size:12px;font-weight:600;padding:15px 0 30px}
+.security-shield{position:fixed;inset:0;background:rgba(7,31,43,.98);z-index:9999;display:none;place-items:center;color:#fff;text-align:center;padding:30px}
+.security-shield.active{display:grid}
+.security-shield h2{font-size:24px;margin:0 0 10px}
+.security-shield p{font-size:14px;color:#C0D5D8;max-width:420px;margin:0 auto}
+@media(max-width:900px){.hero{padding:42px 35px;grid-template-columns:minmax(0,1fr) minmax(220px,.7fr)}.art-orbit{width:230px;height:230px}.art-core{width:150px;height:150px}.exam-layout{grid-template-columns:1fr}.exam-sidebar{order:2}.question-grid{grid-template-columns:repeat(8,1fr)}.timer{font-size:88px}}
+@media(max-width:650px){.container{width:calc(100% - 22px)}.header{min-height:68px}.brand{gap:9px}.brand img{width:43px;height:43px}.brand-name{font-size:16px}.brand-sub{font-size:8px}.header-tag{font-size:10px;padding:7px 10px}.hero{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:30px 21px;border-radius:22px;min-height:auto}.hero-content{width:100%}.hero h1{font-size:clamp(38px,10vw,46px);margin:15px 0 5px}.hero-description{font-size:16px;line-height:2.2}.student-field{margin-top:22px}.hero-art{min-height:190px;margin:18px 0 5px}.art-orbit{width:165px;height:165px}.art-core{width:112px;height:112px;border-radius:23px}.art-core svg{width:78px;height:78px}.float-card{padding:8px 10px;font-size:10px}.float-card b{font-size:15px}.float-one{top:0;right:0}.float-two{bottom:5px;left:0}.float-three{bottom:0;right:30px}.exam-top{padding:0;margin:14px 0}.timer-box{min-width:0;width:100%;padding:12px 14px 14px;border-radius:16px}.timer-label{font-size:12px}.timer{font-size:clamp(56px,15vw,84px);letter-spacing:2px}.student-strip{font-size:12px}.question-card{padding:23px 16px;min-height:350px;border-radius:18px;box-shadow:0 8px 25px rgba(7,31,43,.07),0 0 0 3px rgba(18,184,166,.07),0 0 22px rgba(18,184,166,.15)}.question-text{font-size:20px;line-height:2;font-weight:800}.question-label{font-size:12px}.question-number{font-size:13px}.flag-btn{font-size:11px;padding:6px 10px}.options{grid-template-columns:1fr;gap:10px}.option{min-height:62px;font-size:15px;padding:11px 12px}.option-letter{width:36px;height:36px}.question-grid{display:flex;overflow-x:auto;gap:8px;padding:3px 1px 9px;scrollbar-width:thin}.q-dot{flex:0 0 39px;height:39px}.exam-sidebar{padding:16px}.exam-actions{flex-direction:column}.action-group{width:100%}.action-group .btn{flex:1}.btn-submit{width:100%}.result-card{padding:20px 13px}.result-heading h2{font-size:25px}.result-stats{gap:6px;grid-template-columns:repeat(2,1fr)}.result-stat{padding:13px 4px}.result-stat b{font-size:21px}.result-stat span{font-size:11px}.review-item{padding:14px}.review-question{font-size:15px}.review-answer{font-size:14px}.explanation{font-size:13px}.resume-banner{padding:14px}.resume-actions{width:100%}.resume-actions .btn{flex:1}}
+@media(max-width:370px){.brand-name{font-size:13px}.header-tag{font-size:9px}.hero h1{font-size:37px}.timer{font-size:52px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
-
 <body>
+
+<div class="security-shield" id="securityShield">
+  <div>
+    <h2>⛔ تم إيقاف المحتوى مؤقتاً</h2>
+    <p>لا يمكن متابعة الاختبار أثناء تبديل التبويب أو محاولة النسخ. اضغط الزر بالأسفل للعودة.</p>
+    <button class="btn btn-primary" id="shieldReturn" style="margin-top:18px">أنا هنا — متابعة الاختبار</button>
+  </div>
+</div>
+
 <div class="container">
 
 <header class="header">
   <div class="brand">
-    <img src="logo.png" alt="الإدارة ببساطة">
+    <img src="logo.png" alt="الإدارة ببساطة" onerror="this.style.display='none'">
     <div>
       <div class="brand-name">الإدارة ببساطة</div>
       <span class="brand-sub">LEARN • PRACTICE • EXCEL</span>
@@ -642,92 +189,51 @@ button:focus-visible,input:focus-visible{
   <div class="header-tag">اختبار تدريبي تفاعلي</div>
 </header>
 
-<!-- INTRO -->
 <section id="intro">
   <div class="hero">
-
     <div class="hero-content">
       <div class="eyebrow">MIDTERM PRACTICE EXAM</div>
-
       <h1>الإدارة <span>المالية</span></h1>
-
       <p class="hero-description">
-        أصدقائي الغاليين .. طلاب الإدارة ببساطة ..<br>
-        إن شاء الله امتحان الميد تيرم يكون يسير وبسيط.<br>
-        حل الاختبار ده أكتر من مرة والتزم بالوقت عشان تدرب نفسك.<br>
-        <strong>بالتوفيق، أخوكم عمرو الشوبكي</strong>
+        أصدقائي الغاليين .. طلاب الإدارة بساطة ..<br>
+        ان شاء الله امتحان الميد تيرم يكون يسير وبسيط<br>
+        حل الاختبار ده اكتر من مرة والتزم بالوقت عشان تدرب نفسك<br>
+        <strong>بالتوفيق ، اخوكم عمرو الشوبكي</strong>
       </p>
-
-      <div class="stats">
-        <div class="stat">
-          <strong>30:00</strong>
-          <small>مدة الاختبار</small>
-        </div>
-        <div class="stat">
-          <strong id="questionTotal">15</strong>
-          <small>سؤالًا</small>
-        </div>
-        <div class="stat">
-          <strong id="degreeTotal">15</strong>
-          <small>الدرجة الكلية</small>
-        </div>
-      </div>
-
       <div class="student-field">
         <label for="student">اسم الطالب بالكامل</label>
-        <input id="student" type="text" autocomplete="name"
-               placeholder="اكتب اسمك كما تريد ظهوره في النتيجة">
+        <input id="student" type="text" autocomplete="name" placeholder="اكتب اسمك كما تريد ظهوره في النتيجة">
         <button class="start-btn" id="start">ابدأ الاختبار الآن ←</button>
       </div>
-
-      <div class="hero-note">
-        30 دقيقة من وقتك • إجابة واحدة لكل سؤال • تسليم تلقائي عند انتهاء الوقت
-      </div>
+      <div class="hero-note">30 دقيقة من وقتك • 15 سؤالًا • تسليم تلقائي عند انتهاء الوقت</div>
     </div>
-
     <div class="hero-art" aria-hidden="true">
       <div class="art-orbit">
         <div class="art-core">
           <svg viewBox="0 0 150 150" fill="none">
-            <rect x="19" y="19" width="112" height="112" rx="20"
-                  stroke="#75DCCE" stroke-width="2" opacity=".5"/>
-            <path d="M39 103L62 79L80 91L111 48"
-                  stroke="#75DCCE" stroke-width="6"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M91 48H111V68" stroke="#75DCCE"
-                  stroke-width="6" stroke-linecap="round"/>
-            <path d="M39 113H111" stroke="#75DCCE"
-                  stroke-width="2" opacity=".4"/>
+            <rect x="19" y="19" width="112" height="112" rx="20" stroke="#75DCCE" stroke-width="2" opacity=".5"/>
+            <path d="M39 103L62 79L80 91L111 48" stroke="#75DCCE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M91 48H111V68" stroke="#75DCCE" stroke-width="6" stroke-linecap="round"/>
+            <path d="M39 113H111" stroke="#75DCCE" stroke-width="2" opacity=".4"/>
             <circle cx="39" cy="103" r="5" fill="#75DCCE"/>
             <circle cx="62" cy="79" r="5" fill="#75DCCE"/>
             <circle cx="80" cy="91" r="5" fill="#75DCCE"/>
           </svg>
         </div>
       </div>
-
       <div class="float-card float-one"><b>ROI</b>العائد على الاستثمار</div>
       <div class="float-card float-two"><b>+15%</b>مؤشرات الأداء</div>
       <div class="float-card float-three">FINANCIAL ANALYSIS</div>
     </div>
-
   </div>
 </section>
 
-<!-- EXAM -->
 <section id="exam">
-
   <div class="exam-top">
-    <div class="exam-brand">
-      <img src="logo.png" alt="">
-      <div>
-        <strong>اختبار الإدارة المالية</strong>
-        <small>FINANCIAL MANAGEMENT</small>
-      </div>
-    </div>
-
-    <div class="timer-box">
+    <div class="timer-box" id="timerBox">
       <div class="timer-label">الوقت المتبقي</div>
-      <div class="timer" id="timer" aria-live="off">30:00</div>
+      <div class="timer" id="timer" role="timer" aria-live="off">30:00</div>
+      <div class="timebar"><div class="timebar-fill" id="timebarFill"></div></div>
     </div>
   </div>
 
@@ -736,444 +242,187 @@ button:focus-visible,input:focus-visible{
     <strong id="answered" aria-live="polite">تمت الإجابة: 0</strong>
   </div>
 
-  <div class="progress-track">
+  <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progressTrack">
     <div class="progress-fill" id="progress"></div>
   </div>
 
   <div class="exam-layout">
-
     <main>
       <div class="question-card">
-
         <div class="question-top">
           <span class="question-label">السؤال الحالي</span>
+          <button class="flag-btn" id="flagBtn" type="button">🔖 علّم للمراجعة</button>
           <span class="question-number" id="qnum">01 / 15</span>
         </div>
-
         <h2 class="question-text" id="question"></h2>
         <div class="options" id="options"></div>
-
       </div>
-
       <div class="exam-actions">
         <div class="action-group">
           <button class="btn btn-light" id="prev">السابق</button>
           <button class="btn btn-primary" id="next">السؤال التالي ←</button>
         </div>
-
         <button class="btn btn-submit" id="submit">إنهاء وتسليم الاختبار</button>
       </div>
-
-      <div class="exam-warning">
-        تأكد من مراجعة إجاباتك قبل التسليم. لن تتمكن من تعديلها بعد ذلك.
-      </div>
+      <div class="exam-warning">تأكد من مراجعة إجاباتك قبل التسليم. لن تتمكن من تعديلها بعد ذلك.</div>
     </main>
-
     <aside class="exam-sidebar">
       <div class="sidebar-title">التنقل بين الأسئلة</div>
       <div class="sidebar-sub">اضغط على رقم السؤال للانتقال إليه</div>
-
       <div class="question-grid" id="dots"></div>
-
       <div class="legend">
         <div class="legend-item"><i class="legend-dot green"></i> تمت الإجابة</div>
         <div class="legend-item"><i class="legend-dot dark"></i> السؤال الحالي</div>
+        <div class="legend-item"><i class="legend-dot amber"></i> مُعلَّم للمراجعة</div>
         <div class="legend-item"><i class="legend-dot"></i> لم تتم الإجابة</div>
       </div>
     </aside>
-
   </div>
 </section>
 
-<!-- RESULT -->
 <section id="result">
   <div class="result-card">
-
     <div class="result-heading">
-      <div class="result-kicker">YOUR PERFORMANCE</div>
+      <div class="result-kicker">PERFORMANCE REPORT</div>
+      <div class="grade-badge" id="gradeBadge">—</div>
       <h2 id="resultTitle">انتهى الاختبار</h2>
       <p id="resultMessage"></p>
-
-      <div class="score-circle" id="scoreCircle">
-        <div class="score-value" id="score">0%</div>
-      </div>
-
-      <p>نسبة إجاباتك الصحيحة</p>
+      <div class="score-circle" id="scoreCircle"><div class="score-value" id="score">0%</div></div>
+      <p class="score-sub" id="scoreSub">0 / 30 درجة</p>
     </div>
-
     <div class="result-stats">
-      <div class="result-stat">
-        <b id="correctCount">0</b>
-        <span>إجابة صحيحة</span>
-      </div>
-
-      <div class="result-stat">
-        <b id="wrongCount">0</b>
-        <span>إجابة خاطئة</span>
-      </div>
-
-      <div class="result-stat">
-        <b id="blankCount">0</b>
-        <span>بدون إجابة</span>
-      </div>
+      <div class="result-stat"><b id="correctCount">0</b><span>إجابة صحيحة</span></div>
+      <div class="result-stat"><b id="wrongCount">0</b><span>إجابة خاطئة</span></div>
+      <div class="result-stat"><b id="blankCount">0</b><span>بدون إجابة</span></div>
+      <div class="result-stat"><b id="timeUsed">0:00</b><span>الوقت المستغرق</span></div>
     </div>
-
+    <h3 class="section-title">الأداء حسب المحور</h3>
+    <div class="category-breakdown" id="categoryBreakdown"></div>
     <div class="result-actions">
-      <button class="btn btn-primary" onclick="window.print()">طباعة النتيجة</button>
+      <button class="btn btn-primary" id="retakeBtn">محاولة جديدة</button>
     </div>
-
-    <div class="review" id="review">
-      <h3>مراجعة الإجابات</h3>
-    </div>
-
+    <div class="review" id="review"><h3>مراجعة الإجابات</h3></div>
   </div>
 </section>
 
-<footer class="footer">
-  الإدارة ببساطة © د. عمرو الشوبكي
-  <br>اختبار تدريبي — الإدارة المالية
-</footer>
+<footer class="footer">الإدارة ببساطة © د. عمرو الشوبكي<br>اختبار تدريبي — الإدارة المالية</footer>
+</div>
 
+<div class="modal-backdrop" id="submitModal" hidden>
+  <div class="modal">
+    <h3>تأكيد تسليم الاختبار</h3>
+    <div class="modal-stats">
+      <div><b id="mAnswered">0</b><span>مُجاب</span></div>
+      <div><b id="mBlank">0</b><span>بدون إجابة</span></div>
+      <div><b id="mFlagged">0</b><span>مُعلَّم</span></div>
+    </div>
+    <p>لن تتمكن من تعديل إجاباتك بعد التسليم.</p>
+    <div class="modal-actions">
+      <button class="btn btn-light" id="mCancel">مراجعة</button>
+      <button class="btn btn-submit" id="mConfirm">تسليم نهائي</button>
+    </div>
+  </div>
 </div>
 
 <script>
-const QUESTIONS = [
-{
- q:"أي من الأصول التالية قد ينتج عن الاستثمار فيها مزيدًا من الربحية للمنشأة؟",
- o:["المخزون","النقدية","الأصول الثابتة","الأصول المتداولة"],
- a:2,
- why:"الأصول الثابتة تُستخدم في النشاط وتساهم في تحقيق الإيرادات والربحية."
-},
-{
- q:"ما أسلوب التخطيط المالي الذي يحدد عدد الوحدات الواجب إنتاجها وبيعها لتغطية جميع التكاليف؟",
- o:["تحليل التعادل","التنبؤ المالي","تحليل الحساسية","الرفع المالي"],
- a:0,
- why:"تحليل التعادل يحدد حجم المبيعات الذي تتساوى عنده الإيرادات مع إجمالي التكاليف."
-},
-{
- q:"إجمالي الخصوم المتداولة 100,000 جنيه، والمخزون 50,000 جنيه، ونسبة التداول 2.2. فما نسبة التداول السريع؟",
- o:["1.16","1.4","1.7","2.43"],
- a:2,
- why:"الأصول المتداولة = 220,000. النسبة السريعة = (220,000 - 50,000) ÷ 100,000 = 1.7."
-},
-{
- q:"تكاليف ثابتة سنوية 100,000 جنيه، والمبيعات 15,000 وحدة، وهامش المساهمة للوحدة 20 جنيهًا. درجة الرفع التشغيلي تساوي:",
- o:["2.3 مرة","1.5 مرة","2 مرة","0.75 مرة"],
- a:1,
- why:"هامش المساهمة الكلي = 300,000. الرفع التشغيلي = 300,000 ÷ 200,000 = 1.5 مرة."
-},
-{
- q:"تحديد الأهداف المالية المستقبلية طويلة وقصيرة الأجل للمنظمة وطرق تحقيقها يُعرف بـ:",
- o:["التنبؤ المالي","التخطيط المالي","الرفع المالي","الإدارة المالية"],
- a:1,
- why:"التخطيط المالي يحدد الأهداف المالية والوسائل والموارد اللازمة لتحقيقها."
-},
-{
- q:"أي العبارات التالية عن الأشكال المختلفة لمنظمات الأعمال غير صحيحة وفقًا للمادة؟",
- o:[
- "الشركات المساهمة تستطيع تمويل أنشطتها بسهولة نسبيًا",
- "شركات الأشخاص تعاني من مشكلات الوكالة",
- "المنشآت الفردية واسعة الانتشار لسهولة تكوينها",
- "شركات الأشخاص لا تدفع ضرائب حكومية بصفة مستقلة"
- ],
- a:1,
- why:"وفقًا لمفتاح الإجابة بالمادة، العبارة غير الصحيحة هي أن شركات الأشخاص تعاني من مشكلات الوكالة."
-},
-{
- q:"صافي ربح شركة 150,000 جنيه، وعدد الأسهم 25,000 سهم، وسعر السهم السوقي 96 جنيهًا. مضاعف السعر يساوي:",
- o:["11 مرة","13 مرة","16 مرة","20 مرة"],
- a:2,
- why:"ربحية السهم = 6 جنيهات. مضاعف السعر = 96 ÷ 6 = 16 مرة."
-},
-{
- q:"الربح التشغيلي 200,000 جنيه، والقروض 100,000 جنيه بفائدة سنوية 17%. درجة الرفع المالي تساوي تقريبًا:",
- o:["0.78 مرة","1.1 مرة","1.6 مرة","2 مرة"],
- a:1,
- why:"الفوائد = 17,000. درجة الرفع المالي = 200,000 ÷ 183,000 ≈ 1.1 مرة."
-},
-{
- q:"إيجارات سنوية 43,000 جنيه وفواتير كهرباء 17,000 جنيه. تكلفة المواد الخام للوحدة 14 جنيهًا وسعر بيعها 26 جنيهًا. ما المبيعات اللازمة لتحقيق ربح 120,000 جنيه؟",
- o:["15,000 وحدة","230,000 جنيه","390,000 جنيه","4,500 وحدة"],
- a:2,
- why:"التكاليف الثابتة = 60,000. الوحدات المطلوبة = 15,000 وحدة. قيمة المبيعات = 390,000 جنيه."
-},
-{
- q:"المفهوم الذي يعبر عن قدرة المنشأة على استخدام الأصول ذات التكاليف الثابتة لتعظيم أثر تغير المبيعات على الربح التشغيلي هو:",
- o:["تحليل التعادل","الرفع الكلي","الرفع التشغيلي","الرفع المالي"],
- a:2,
- why:"الرفع التشغيلي يرتبط بالتكاليف التشغيلية الثابتة وتأثير تغير المبيعات على الربح التشغيلي."
-},
-{
- q:"إيرادات المبيعات 150 مليون جنيه، وهامش الربح 5%، وإجمالي الأصول 50 مليونًا، ومضاعف الملكية 1.6. العائد على الملكية يساوي:",
- o:["11%","16%","19%","24%"],
- a:3,
- why:"صافي الربح = 7.5 مليون. العائد على الأصول = 15%. العائد على الملكية = 15% × 1.6 = 24%."
-},
-{
- q:"من الوسائل التي يمكن أن تحفز إدارة الشركة المساهمة على تعظيم ثروة المساهمين:",
- o:[
- "تعظيم قيمة سهم الشركة",
- "استخدام الشراء الائتماني",
- "التوسع في المشروعات الرأسمالية",
- "التهديد بالاستيلاء على الشركة"
- ],
- a:3,
- why:"التهديد بالاستيلاء على الشركة يمثل آلية رقابية قد تضغط على الإدارة لتحسين الأداء."
-},
-{
- q:"متوسط فترة تحصيل حسابات القبض 18 يومًا، وإجمالي المبيعات 84,000 جنيه نصفها آجل. باستخدام سنة 360 يومًا، رصيد حسابات القبض يساوي:",
- o:["1,600 جنيه","2,100 جنيه","4,200 جنيه","6,000 جنيه"],
- a:1,
- why:"المبيعات الآجلة = 42,000. حسابات القبض = (42,000 ÷ 360) × 18 = 2,100 جنيه."
-},
-{
- q:"التكاليف الثابتة 215,000 جنيه، والتكلفة المتغيرة للوحدة 135 جنيهًا، وسعر البيع 220 جنيهًا. بعد تخفيض التكاليف الثابتة 12%، كمية التعادل تساوي تقريبًا:",
- o:["1,990 وحدة","1,788 وحدة","2,226 وحدة","2,643 وحدة"],
- a:2,
- why:"التكاليف الثابتة الجديدة = 189,200. كمية التعادل = 189,200 ÷ 85 ≈ 2,226 وحدة."
-},
-{
- q:"من أمثلة الحوافز التي قد يحصل عليها المديرون عند تحقيق مستويات أداء مرتفعة بهدف تعظيم ثروة المساهمين:",
- o:["خيارات شراء الأسهم","الشراء الائتماني","زيادة سعر السهم","التهديد بالفصل"],
- a:0,
- why:"خيارات شراء الأسهم تربط جزءًا من منفعة المدير بأداء السهم وقيمة الشركة."
-}
+"use strict";
+const QUESTIONS_RAW=[
+{q:"أي من الأصول التالية قد ينتج عن الاستثمار فيها مزيدًا من الربحية للمنشأة؟",o:["المخزون","النقدية","الأصول الثابتة","الأصول المتداولة"],aEnc:"Mg==",why:"الأصول الثابتة تُستخدم في النشاط وتساهم في تحقيق الإيرادات والربحية.",category:"مفاهيم الإدارة المالية",marks:2},
+{q:"ما أسلوب التخطيط المالي الذي يحدد عدد الوحدات الواجب إنتاجها وبيعها لتغطية جميع التكاليف؟",o:["تحليل التعادل","التنبؤ المالي","تحليل الحساسية","الرفع المالي"],aEnc:"MA==",why:"تحليل التعادل يحدد حجم المبيعات الذي تتساوى عنده الإيرادات مع إجمالي التكاليف.",category:"التخطيط المالي",marks:2},
+{q:"إجمالي الخصوم المتداولة 100,000 جنيه، والمخزون 50,000 جنيه، ونسبة التداول 2.2. فما نسبة التداول السريع؟",o:["1.16","1.4","1.7","2.43"],aEnc:"Mg==",why:"الأصول المتداولة = 220,000. النسبة السريعة = (220,000 - 50,000) ÷ 100,000 = 1.7.",category:"التحليل المالي",marks:2},
+{q:"تكاليف ثابتة سنوية 100,000 جنيه، والمبيعات 15,000 وحدة، وهامش المساهمة للوحدة 20 جنيهًا. درجة الرفع التشغيلي تساوي:",o:["2.3 مرة","1.5 مرة","2 مرة","0.75 مرة"],aEnc:"MQ==",why:"هامش المساهمة الكلي = 300,000. الرفع التشغيلي = 300,000 ÷ 200,000 = 1.5 مرة.",category:"الرفع المالي",marks:2},
+{q:"تحديد الأهداف المالية المستقبلية طويلة وقصيرة الأجل للمنظمة وطرق تحقيقها يُعرف بـ:",o:["التنبؤ المالي","التخطيط المالي","الرفع المالي","الإدارة المالية"],aEnc:"MQ==",why:"التخطيط المالي يحدد الأهداف المالية والوسائل والموارد اللازمة لتحقيقها.",category:"التخطيط المالي",marks:2},
+{q:"أي العبارات التالية عن الأشكال المختلفة لمنظمات الأعمال غير صحيحة وفقًا للمادة؟",o:["الشركات المساهمة تستطيع تمويل أنشطتها بسهولة نسبيًا","شركات الأشخاص تعاني من مشكلات الوكالة","المنشآت الفردية واسعة الانتشار لسهولة تكوينها","شركات الأشخاص لا تدفع ضرائب حكومية بصفة مستقلة"],aEnc:"MQ==",why:"وفقًا لمفتاح الإجابة بالمادة، العبارة غير الصحيحة هي أن شركات الأشخاص تعاني من مشكلات الوكالة.",category:"حوكمة الشركات",marks:2},
+{q:"صافي ربح شركة 150,000 جنيه، وعدد الأسهم 25,000 سهم، وسعر السهم السوقي 96 جنيهًا. مضاعف السعر يساوي:",o:["11 مرة","13 مرة","16 مرة","20 مرة"],aEnc:"Mg==",why:"ربحية السهم = 6 جنيهات. مضاعف السعر = 96 ÷ 6 = 16 مرة.",category:"التحليل المالي",marks:2},
+{q:"الربح التشغيلي 200,000 جنيه، والقروض 100,000 جنيه بفائدة سنوية 17%. درجة الرفع المالي تساوي تقريبًا:",o:["0.78 مرة","1.1 مرة","1.6 مرة","2 مرة"],aEnc:"MQ==",why:"الفوائد = 17,000. درجة الرفع المالي = 200,000 ÷ 183,000 ≈ 1.1 مرة.",category:"الرفع المالي",marks:2},
+{q:"إيجارات سنوية 43,000 جنيه وفواتير كهرباء 17,000 جنيه. تكلفة المواد الخام للوحدة 14 جنيهًا وسعر بيعها 26 جنيهًا. ما المبيعات اللازمة لتحقيق ربح 120,000 جنيه؟",o:["15,000 وحدة","230,000 جنيه","390,000 جنيه","4,500 وحدة"],aEnc:"Mg==",why:"التكاليف الثابتة = 60,000. الوحدات المطلوبة = 15,000 وحدة. قيمة المبيعات = 390,000 جنيه.",category:"تحليل التعادل",marks:2},
+{q:"المفهوم الذي يعبر عن قدرة المنشأة على استخدام الأصول ذات التكاليف الثابتة لتعظيم أثر تغير المبيعات على الربح التشغيلي هو:",o:["تحليل التعادل","الرفع الكلي","الرفع التشغيلي","الرفع المالي"],aEnc:"Mg==",why:"الرفع التشغيلي يرتبط بالتكاليف التشغيلية الثابتة وتأثير تغير المبيعات على الربح التشغيلي.",category:"الرفع المالي",marks:2},
+{q:"إيرادات المبيعات 150 مليون جنيه، وهامش الربح 5%، وإجمالي الأصول 50 مليونًا، ومضاعف الملكية 1.6. العائد على الملكية يساوي:",o:["11%","16%","19%","24%"],aEnc:"Mw==",why:"صافي الربح = 7.5 مليون. العائد على الأصول = 15%. العائد على الملكية = 15% × 1.6 = 24%.",category:"التحليل المالي",marks:2},
+{q:"من الوسائل التي يمكن أن تحفز إدارة الشركة المساهمة على تعظيم ثروة المساهمين:",o:["تعظيم قيمة سهم الشركة","استخدام الشراء الائتماني","التوسع في المشروعات الرأسمالية","التهديد بالاستيلاء على الشركة"],aEnc:"Mw==",why:"التهديد بالاستيلاء على الشركة يمثل آلية رقابية قد تضغط على الإدارة لتحسين الأداء.",category:"حوكمة الشركات",marks:2},
+{q:"متوسط فترة تحصيل حسابات القبض 18 يومًا، وإجمالي المبيعات 84,000 جنيه نصفها آجل. باستخدام سنة 360 يومًا، رصيد حسابات القبض يساوي:",o:["1,600 جنيه","2,100 جنيه","4,200 جنيه","6,000 جنيه"],aEnc:"MQ==",why:"المبيعات الآجلة = 42,000. حسابات القبض = (42,000 ÷ 360) × 18 = 2,100 جنيه.",category:"رأس المال العامل",marks:2},
+{q:"التكاليف الثابتة 215,000 جنيه، والتكلفة المتغيرة للوحدة 135 جنيهًا، وسعر البيع 220 جنيهًا. بعد تخفيض التكاليف الثابتة 12%، كمية التعادل تساوي تقريبًا:",o:["1,990 وحدة","1,788 وحدة","2,226 وحدة","2,643 وحدة"],aEnc:"Mg==",why:"التكاليف الثابتة الجديدة = 189,200. كمية التعادل = 189,200 ÷ 85 ≈ 2,226 وحدة.",category:"تحليل التعادل",marks:2},
+{q:"من أمثلة الحوافز التي قد يحصل عليها المديرون عند تحقيق مستويات أداء مرتفعة بهدف تعظيم ثروة المساهمين:",o:["خيارات شراء الأسهم","الشراء الائتماني","زيادة سعر السهم","التهديد بالفصل"],aEnc:"MA==",why:"خيارات شراء الأسهم تربط جزءًا من منفعة المدير بأداء السهم وقيمة الشركة.",category:"حوكمة الشركات",marks:2}
 ];
+const QUESTIONS=QUESTIONS_RAW.map(q=>({...q,a:parseInt(atob(q.aEnc),10)}));
+const $=id=>document.getElementById(id);
+const letters=["أ","ب","ج","د"];
+const EXAM_SECONDS=30*60;
+const STORAGE_KEY="fm_exam_state_v1";
+const SESSION_MAX_AGE=6*60*60*1000;
+let current=0,answers=Array(QUESTIONS.length).fill(null),flagged=new Set(),remaining=EXAM_SECONDS,clock=null,finished=false,studentName="",startedAt=null,tabSwitches=0;
+function formatTime(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function showToast(msg){const t=document.createElement("div");t.className="toast";t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3500)}
+function saveProgress(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({answers,remaining,current,studentName,flagged:[...flagged],startedAt,savedAt:Date.now(),version:1}))}catch(e){}}
+function loadProgress(){try{const r=localStorage.getItem(STORAGE_KEY);if(!r)return null;const s=JSON.parse(r);if(s.version!==1)return null;if(Date.now()-s.savedAt>SESSION_MAX_AGE){localStorage.removeItem(STORAGE_KEY);return null}return s}catch(e){return null}}
+function clearProgress(){try{localStorage.removeItem(STORAGE_KEY)}catch(e){}}
+function updateTimer(){$("timer").textContent=formatTime(remaining);$("timebarFill").style.width=(remaining/EXAM_SECONDS*100)+"%";if(remaining<=180){$("timer").classList.add("warning");$("timerBox").classList.add("urgent")}}
+function startClock(){if(clock!==null)clearInterval(clock);clock=setInterval(()=>{if(finished)return;remaining=Math.max(0,remaining-1);updateTimer();if(remaining%5===0)saveProgress();if(remaining<=0)finishExam(true)},1000)}
+function showResumeBanner(saved){const ac=saved.answers.filter(a=>a!==null).length;const m=Math.floor(saved.remaining/60);const s=saved.remaining%60;const b=document.createElement("div");b.className="resume-banner";b.innerHTML='<div><strong>لديك محاولة سابقة</strong><span>'+saved.studentName+' — '+ac+' إجابة — متبقي '+m+':'+String(s).padStart(2,"0")+'</span></div><div class="resume-actions"><button class="btn btn-primary" id="resumeBtn">استئناف</button><button class="btn btn-light" id="discardBtn">بدء من جديد</button></div>';document.querySelector(".container").prepend(b);b.querySelector("#resumeBtn").onclick=()=>{answers=saved.answers;remaining=saved.remaining;current=saved.current||0;studentName=saved.studentName;flagged=new Set(saved.flagged||[]);startedAt=saved.startedAt||Date.now();$("student").value=studentName;b.remove();startExam(true)};b.querySelector("#discardBtn").onclick=()=>{clearProgress();b.remove()}}
+function startExam(isResume){if(finished||clock!==null)return;if(!isResume){studentName=$("student").value.trim();if(!studentName){$("student").focus();showToast("من فضلك اكتب اسم الطالب أولاً.");return}startedAt=Date.now();answers=Array(QUESTIONS.length).fill(null);flagged=new Set();current=0;remaining=EXAM_SECONDS}$("start").disabled=true;$("intro").style.display="none";$("exam").style.display="block";$("studentLabel").textContent="الطالب: "+studentName;updateTimer();renderQuestion();startClock();saveProgress();window.scrollTo({top:0,behavior:"smooth"})}
+function renderQuestion(){const q=QUESTIONS[current];$("qnum").textContent=String(current+1).padStart(2,"0")+" / "+QUESTIONS.length;$("question").textContent=q.q;$("options").innerHTML="";q.o.forEach((opt,i)=>{const btn=document.createElement("button");btn.type="button";btn.className="option"+(answers[current]===i?" selected":"");btn.setAttribute("aria-pressed",String(answers[current]===i));const L=document.createElement("span");L.className="option-letter";L.textContent=letters[i];const T=document.createElement("span");T.textContent=opt;btn.append(L,T);btn.addEventListener("click",()=>{if(finished)return;answers[current]=i;renderQuestion();saveProgress()});$("options").appendChild(btn)});const f=$("flagBtn");if(flagged.has(current)){f.classList.add("active");f.textContent="🔖 مُعلَّم — إزالة"}else{f.classList.remove("active");f.textContent="🔖 علّم للمراجعة"}const c=answers.filter(a=>a!==null).length;$("answered").textContent="تمت الإجابة: "+c+" / "+QUESTIONS.length;$("progress").style.width=(c/QUESTIONS.length*100)+"%";$("progressTrack").setAttribute("aria-valuemax",String(QUESTIONS.length));$("progressTrack").setAttribute("aria-valuenow",String(c));$("prev").disabled=current===0;$("next").disabled=current===QUESTIONS.length-1;$("dots").innerHTML="";QUESTIONS.forEach((_,i)=>{const d=document.createElement("button");d.type="button";d.className="q-dot"+(answers[i]!==null?" done":"")+(i===current?" current":"")+(flagged.has(i)?" flagged":"");d.textContent=i+1;d.setAttribute("aria-label","الانتقال إلى السؤال "+(i+1));d.setAttribute("aria-current",i===current?"step":"false");d.addEventListener("click",()=>{if(finished)return;current=i;renderQuestion();saveProgress()});$("dots").appendChild(d)})}
+function openSubmitModal(){const a=answers.filter(x=>x!==null).length;$("mAnswered").textContent=a;$("mBlank").textContent=QUESTIONS.length-a;$("mFlagged").textContent=flagged.size;$("submitModal").hidden=false}
+function closeSubmitModal(){$("submitModal").hidden=true}
+function gradeFor(p){if(p>=90)return{g:"A+",label:"ممتاز",color:"#078B70"};if(p>=80)return{g:"A",label:"ممتاز",color:"#078B70"};if(p>=70)return{g:"B",label:"جيد جداً",color:"#12B8A6"};if(p>=60)return{g:"C",label:"جيد",color:"#F2B705"};if(p>=50)return{g:"D",label:"مقبول",color:"#E67E22"};return{g:"F",label:"يحتاج مراجعة",color:"#D94D5C"}}
+function finishExam(auto){if(finished)return;finished=true;if(clock!==null){clearInterval(clock);clock=null}$("exam").style.display="none";$("result").style.display="block";$("securityShield").classList.remove("active");const total=QUESTIONS.reduce((s,q)=>s+q.marks,0);let earned=0,correct=0,blank=0;const byCat={};QUESTIONS.forEach((q,i)=>{byCat[q.category]??={earned:0,total:0,correct:0,count:0};byCat[q.category].total+=q.marks;byCat[q.category].count++;if(answers[i]===null){blank++}else if(answers[i]===q.a){correct++;earned+=q.marks;byCat[q.category].earned+=q.marks;byCat[q.category].correct++}});const wrong=QUESTIONS.length-correct-blank;const pct=Math.round(earned/total*100);const g=gradeFor(pct);const used=EXAM_SECONDS-remaining;$("score").textContent=pct+"%";$("scoreCircle").style.setProperty("--score",pct+"%");$("scoreSub").textContent=earned+" / "+total+" درجة";$("gradeBadge").textContent=g.g;$("gradeBadge").style.background=g.color;$("correctCount").textContent=correct;$("wrongCount").textContent=wrong;$("blankCount").textContent=blank;$("timeUsed").textContent=formatTime(used);$("resultTitle").textContent=auto?"انتهى الوقت وتم تسليم إجاباتك":"تم تسليم الاختبار بنجاح";$("resultMessage").textContent=studentName+"، حصلت على "+earned+" من "+total+" درجة — "+g.label+(tabSwitches>0?" (تنبيه: "+tabSwitches+" خروج من الصفحة)":"");renderCat(byCat);renderReview();clearProgress();window.scrollTo({top:0,behavior:"smooth"})}
+function renderCat(byCat){const el=$("categoryBreakdown");el.innerHTML="";Object.entries(byCat).forEach(([cat,s])=>{const p=Math.round(s.earned/s.total*100);const cls=p>=75?"good":p>=50?"ok":"weak";const row=document.createElement("div");row.className="cat-row "+cls;row.innerHTML='<div class="cat-head"><span>'+cat+'</span><b>'+s.earned+' / '+s.total+' ('+p+'%)</b></div><div class="cat-bar"><div style="width:'+p+'%"></div></div>';el.appendChild(row)})}
+function renderReview(){const el=$("review");el.innerHTML="<h3>مراجعة الإجابات</h3>";QUESTIONS.forEach((q,i)=>{const item=document.createElement("article");item.className="review-item";const t=document.createElement("div");t.className="review-question";t.textContent=(i+1)+". "+q.q;item.appendChild(t);const r=document.createElement("div");r.className=answers[i]===q.a?"review-answer correct":"review-answer wrong";if(answers[i]===q.a)r.textContent="✓ إجابتك صحيحة";else if(answers[i]===null)r.textContent="لم تتم الإجابة عن هذا السؤال";else r.textContent="✕ إجابتك: "+letters[answers[i]]+" — "+q.o[answers[i]];item.appendChild(r);const ca=document.createElement("div");ca.className="review-answer correct";ca.textContent="الإجابة الصحيحة: "+letters[q.a]+" — "+q.o[q.a];item.appendChild(ca);const e=document.createElement("div");e.className="explanation";e.textContent=q.why;item.appendChild(e);el.appendChild(item)})}
+function retakeExam(){clearProgress();answers=Array(QUESTIONS.length).fill(null);flagged=new Set();current=0;remaining=EXAM_SECONDS;finished=false;startedAt=null;tabSwitches=0;$("result").style.display="none";$("intro").style.display="block";$("exam").style.display="none";$("start").disabled=false;$("timer").classList.remove("warning");$("timerBox").classList.remove("urgent");$("timebarFill").style.width="100%";window.scrollTo({top:0,behavior:"smooth"})}
 
-const $ = id => document.getElementById(id);
-const letters = ["أ","ب","ج","د"];
+/* ============ EVENTS ============ */
+$("start").addEventListener("click",()=>startExam(false));
+$("student").addEventListener("keydown",e=>{if(e.key==="Enter")startExam(false)});
+$("prev").addEventListener("click",()=>{if(current>0&&!finished){current--;renderQuestion();saveProgress()}});
+$("next").addEventListener("click",()=>{if(current<QUESTIONS.length-1&&!finished){current++;renderQuestion();saveProgress()}});
+$("flagBtn").addEventListener("click",()=>{if(finished)return;if(flagged.has(current))flagged.delete(current);else flagged.add(current);renderQuestion();saveProgress()});
+$("submit").addEventListener("click",()=>{if(!finished)openSubmitModal()});
+$("mCancel").addEventListener("click",closeSubmitModal);
+$("mConfirm").addEventListener("click",()=>{closeSubmitModal();finishExam(false)});
+$("retakeBtn").addEventListener("click",retakeExam);
+$("shieldReturn").addEventListener("click",()=>{$("securityShield").classList.remove("active")});
 
-let current = 0;
-let answers = Array(QUESTIONS.length).fill(null);
-let remaining = 30 * 60;
-let clock = null;
-let finished = false;
-let studentName = "";
-
-$("questionTotal").textContent = QUESTIONS.length;
-$("degreeTotal").textContent = QUESTIONS.length;
-
-function formatTime(seconds){
-  return String(Math.floor(seconds/60)).padStart(2,"0") + ":" +
-         String(seconds%60).padStart(2,"0");
-}
-
-function startExam(){
-  if(finished || clock) return;
-
-  studentName = $("student").value.trim();
-
-  if(!studentName){
-    $("student").focus();
-    alert("من فضلك اكتب اسم الطالب أولاً.");
-    return;
-  }
-
-  $("intro").style.display = "none";
-  $("exam").style.display = "block";
-  $("studentLabel").textContent = "الطالب: " + studentName;
-
-  renderQuestion();
-  window.scrollTo({top:0,behavior:"smooth"});
-
-  clock = setInterval(()=>{
-    remaining--;
-    $("timer").textContent = formatTime(remaining);
-
-    if(remaining <= 180) $("timer").classList.add("warning");
-    if(remaining <= 0) finishExam(true);
-  },1000);
-}
-
-function renderQuestion(){
-  const q = QUESTIONS[current];
-
-  $("qnum").textContent =
-    String(current+1).padStart(2,"0") + " / " + QUESTIONS.length;
-
-  $("question").textContent = q.q;
-  $("options").innerHTML = "";
-
-  q.o.forEach((option,index)=>{
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "option" +
-      (answers[current] === index ? " selected" : "");
-
-    button.setAttribute("aria-pressed",answers[current] === index);
-
-    const letter = document.createElement("span");
-    letter.className = "option-letter";
-    letter.textContent = letters[index];
-
-    const text = document.createElement("span");
-    text.textContent = option;
-
-    button.append(letter,text);
-
-    button.onclick = ()=>{
-      if(finished) return;
-      answers[current] = index;
-      renderQuestion();
-    };
-
-    $("options").appendChild(button);
-  });
-
-  const count = answers.filter(a=>a !== null).length;
-
-  $("answered").textContent =
-    "تمت الإجابة: " + count + " / " + QUESTIONS.length;
-
-  $("progress").style.width =
-    (count / QUESTIONS.length * 100) + "%";
-
-  $("prev").disabled = current === 0;
-  $("next").disabled = current === QUESTIONS.length-1;
-
-  $("dots").innerHTML = "";
-
-  QUESTIONS.forEach((question,index)=>{
-    const dot = document.createElement("button");
-
-    dot.type = "button";
-    dot.className = "q-dot" +
-      (answers[index] !== null ? " done" : "") +
-      (index === current ? " current" : "");
-
-    dot.textContent = index+1;
-    dot.setAttribute("aria-label","الانتقال إلى السؤال "+(index+1));
-    dot.setAttribute("aria-current",index === current ? "step" : "false");
-
-    dot.onclick = ()=>{
-      if(finished) return;
-      current = index;
-      renderQuestion();
-    };
-
-    $("dots").appendChild(dot);
-  });
-}
-
-function finishExam(auto = false){
-  if(finished) return;
-
-  if(!auto){
-    const unanswered = answers.filter(a=>a === null).length;
-
-    let message = "هل تريد تسليم الاختبار نهائيًا؟";
-
-    if(unanswered > 0){
-      message += "\nلم تجب عن " + unanswered + " سؤال.";
-    }
-
-    if(!confirm(message)) return;
-  }
-
-  finished = true;
-  clearInterval(clock);
-  clock = null;
-
-  $("exam").style.display = "none";
-  $("result").style.display = "block";
-
-  let correct = 0;
-  let blank = 0;
-
-  QUESTIONS.forEach((q,index)=>{
-    if(answers[index] === null) blank++;
-    else if(answers[index] === q.a) correct++;
-  });
-
-  const wrong = QUESTIONS.length - correct - blank;
-  const percentage = Math.round(correct / QUESTIONS.length * 100);
-
-  $("score").textContent = percentage + "%";
-  $("scoreCircle").style.setProperty("--score",percentage+"%");
-
-  $("correctCount").textContent = correct;
-  $("wrongCount").textContent = wrong;
-  $("blankCount").textContent = blank;
-
-  $("resultTitle").textContent = auto ?
-    "انتهى الوقت وتم تسليم إجاباتك" :
-    "تم تسليم الاختبار بنجاح";
-
-  $("resultMessage").textContent =
-    studentName + "، حصلت على " + correct +
-    " من " + QUESTIONS.length + " درجات.";
-
-  $("review").innerHTML = "<h3>مراجعة الإجابات</h3>";
-
-  QUESTIONS.forEach((q,index)=>{
-    const item = document.createElement("article");
-    item.className = "review-item";
-
-    const title = document.createElement("div");
-    title.className = "review-question";
-    title.textContent = (index+1) + ". " + q.q;
-    item.appendChild(title);
-
-    const response = document.createElement("div");
-
-    response.className =
-      answers[index] === q.a ? "review-answer correct" :
-      "review-answer wrong";
-
-    if(answers[index] === q.a){
-      response.textContent = "✓ إجابتك صحيحة";
-    }else if(answers[index] === null){
-      response.textContent = "لم تتم الإجابة عن هذا السؤال";
-    }else{
-      response.textContent =
-        "✕ إجابتك: " + letters[answers[index]] +
-        " — " + q.o[answers[index]];
-    }
-
-    item.appendChild(response);
-
-    const correctAnswer = document.createElement("div");
-    correctAnswer.className = "review-answer correct";
-
-    correctAnswer.textContent =
-      "الإجابة الصحيحة: " + letters[q.a] + " — " + q.o[q.a];
-
-    item.appendChild(correctAnswer);
-
-    const explanation = document.createElement("div");
-    explanation.className = "explanation";
-    explanation.textContent = q.why;
-
-    item.appendChild(explanation);
-    $("review").appendChild(item);
-  });
-
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-/* EVENTS */
-$("start").addEventListener("click",startExam);
-
-$("student").addEventListener("keydown",event=>{
-  if(event.key === "Enter") startExam();
+/* اختصارات لوحة المفاتيح */
+document.addEventListener("keydown",e=>{
+  if(finished||$("exam").style.display!=="block")return;
+  if(e.target.tagName==="INPUT")return;
+  const k=e.key.toLowerCase();
+  if(["1","2","3","4"].includes(k)){const idx=+k-1;if(idx<QUESTIONS[current].o.length){answers[current]=idx;renderQuestion();saveProgress()}}
+  if(k==="arrowleft"||k==="n")$("next").click();
+  if(k==="arrowright"||k==="p")$("prev").click();
 });
 
-$("prev").addEventListener("click",()=>{
-  if(current > 0 && !finished){
-    current--;
-    renderQuestion();
+/* منع القائمة اليمين */
+document.addEventListener("contextmenu",e=>{if(!finished)e.preventDefault()});
+
+/* منع النسخ / القص / اللصق */
+["copy","cut","paste"].forEach(evt=>{document.addEventListener(evt,e=>{if(!finished)e.preventDefault()})});
+
+/* منع اختصارات الحفظ/الطباعة/التصوير */
+document.addEventListener("keydown",e=>{
+  if(finished)return;
+  const k=e.key.toLowerCase();
+  const blocked=(e.ctrlKey&&["c","s","p","u","a"].includes(k))||(e.metaKey&&["c","s","p","u","a"].includes(k))||e.key==="PrintScreen"||(e.ctrlKey&&e.shiftKey&&["i","j","c","s"].includes(k))||e.key==="F12";
+  if(blocked){e.preventDefault();if(e.key==="PrintScreen"){navigator.clipboard?.writeText?.("").catch(()=>{});showToast("⚠️ لقط الشاشة غير مسموح أثناء الاختبار")}}
+},true);
+
+/* كشف PrintScreen عبر keyup */
+document.addEventListener("keyup",e=>{if(finished)return;if(e.key==="PrintScreen"){navigator.clipboard?.writeText?.("").catch(()=>{});showToast("⚠️ لقط الشاشة غير مسموح")}});
+
+/* كشف تبديل التبويب — blur + شاشة حماية */
+document.addEventListener("visibilitychange",()=>{
+  if(finished)return;
+  if(document.hidden&&startedAt){
+    tabSwitches++;
+    saveProgress();
+  } else if(!document.hidden&&startedAt){
+    if(tabSwitches>0)$("securityShield").classList.add("active");
   }
 });
 
-$("next").addEventListener("click",()=>{
-  if(current < QUESTIONS.length-1 && !finished){
-    current++;
-    renderQuestion();
-  }
+/* استرجاع عند فتح الصفحة */
+window.addEventListener("DOMContentLoaded",()=>{
+  const saved=loadProgress();
+  if(saved&&saved.answers&&saved.answers.some(a=>a!==null))showResumeBanner(saved);
 });
-
-$("submit").addEventListener("click",()=>finishExam(false));
 </script>
-
 </body>
 </html>
