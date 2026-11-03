@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -28,6 +27,7 @@
   --bg:#F2F9F8;
   --red:#D94D5C;
   --green:#078B70;
+  --amber:#F2B705;
   --shadow:0 14px 38px rgba(7,31,43,.08);
   --font-ar:"IBM Plex Sans Arabic",sans-serif;
   --font-en:"Inter",sans-serif;
@@ -50,7 +50,20 @@ body{
   font-weight:500;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
+
+  /* منع النسخ والتحديد */
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;
 }
+
+/* نسمح بالكتابة في حقل الاسم فقط */
+input, textarea { user-select:text; -webkit-user-select:text; }
+
+/* منع سحب الصور */
+img { -webkit-user-drag:none; pointer-events:none; }
 
 button,input{font:inherit}
 button{cursor:pointer}
@@ -297,11 +310,16 @@ button:focus-visible,input:focus-visible{
 #exam,#result{display:none}
 
 .exam-top{
+  position:sticky;
+  top:10px;
+  z-index:50;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:18px;
-  background:white;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   border:1px solid #CFE9E4;
   border-radius:20px;
   padding:17px 22px;
@@ -326,11 +344,11 @@ button:focus-visible,input:focus-visible{
   direction:ltr;
 }
 
-/* LARGE TIMER */
+/* TIMER (مكبّر) */
 .timer-box{
-  min-width:245px;
+  min-width:310px;
   text-align:center;
-  padding:12px 25px 14px;
+  padding:14px 32px 16px;
   border:1px solid rgba(18,184,166,.34);
   border-radius:18px;
   background:
@@ -342,19 +360,19 @@ button:focus-visible,input:focus-visible{
     0 0 28px rgba(18,184,166,.13);
 }
 .timer-label{
-  font-size:13px;
+  font-size:14px;
   color:#42666B;
   font-weight:800;
   margin-bottom:0;
   letter-spacing:.2px;
 }
 .timer{
-  font-size:clamp(54px,6.4vw,76px);
+  font-size:clamp(64px,8vw,94px);
   font-weight:800;
-  line-height:1.22;
+  line-height:1.15;
   color:var(--navy);
   direction:ltr;
-  letter-spacing:1px;
+  letter-spacing:2px;
   font-variant-numeric:tabular-nums;
   text-shadow:0 2px 0 rgba(18,184,166,.10);
   white-space:nowrap;
@@ -372,6 +390,21 @@ button:focus-visible,input:focus-visible{
 }
 .timer-box.urgent .timer-label{color:#A93B49}
 @keyframes timerPulse{50%{opacity:.72}}
+
+.timebar{
+  height:6px;
+  background:#E8EFF0;
+  border-radius:6px;
+  overflow:hidden;
+  margin-top:8px;
+}
+.timebar-fill{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,#078F83,#12B8A6);
+  border-radius:6px;
+  transition:width 1s linear;
+}
 
 .student-strip{
   display:flex;
@@ -407,7 +440,7 @@ button:focus-visible,input:focus-visible{
   align-items:start;
 }
 
-/* GLOWING QUESTION CARD */
+/* QUESTION CARD */
 .question-card{
   position:relative;
   isolation:isolate;
@@ -450,6 +483,7 @@ button:focus-visible,input:focus-visible{
   align-items:center;
   gap:12px;
   margin-bottom:22px;
+  flex-wrap:wrap;
 }
 .question-label{
   color:#087F76;
@@ -473,6 +507,24 @@ button:focus-visible,input:focus-visible{
   direction:ltr;
   box-shadow:0 5px 14px rgba(7,31,43,.16);
 }
+
+.flag-btn{
+  background:#F3FAF8;
+  border:1px solid #CFE7E2;
+  border-radius:9px;
+  padding:7px 12px;
+  font-size:12px;
+  font-weight:800;
+  color:#42666B;
+  transition:.15s;
+}
+.flag-btn:hover{background:#E8F6F3}
+.flag-btn.active{
+  background:#FFF4D6;
+  border-color:var(--amber);
+  color:#8A6D00;
+}
+
 .question-text{
   font-size:clamp(20px,2.3vw,25px);
   line-height:2;
@@ -580,6 +632,10 @@ button:focus-visible,input:focus-visible{
   color:white;
   border-color:var(--navy);
 }
+.q-dot.flagged{
+  outline:2px solid var(--amber);
+  outline-offset:-2px;
+}
 .legend{display:grid;gap:9px;margin-top:19px}
 .legend-item{
   display:flex;
@@ -596,6 +652,7 @@ button:focus-visible,input:focus-visible{
 }
 .legend-dot.green{background:#A9E2D4}
 .legend-dot.dark{background:var(--navy)}
+.legend-dot.amber{background:var(--amber)}
 
 /* BUTTONS */
 .exam-actions{
@@ -634,6 +691,66 @@ button:focus-visible,input:focus-visible{
   font-weight:600;
 }
 
+/* RESUME BANNER */
+.resume-banner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  background:linear-gradient(120deg,#FFF8E1,#FFF4D6);
+  border:1px solid #F2C94C;
+  border-radius:16px;
+  padding:16px 20px;
+  margin:18px 0;
+  box-shadow:0 8px 24px rgba(242,201,76,.15);
+}
+.resume-banner strong{display:block;color:#7A5E00;font-size:15px;font-weight:800}
+.resume-banner span{display:block;color:#8A6D00;font-size:12px;font-weight:600;margin-top:3px}
+.resume-actions{display:flex;gap:8px}
+
+/* MODAL */
+.modal-backdrop{
+  position:fixed;inset:0;
+  background:rgba(7,31,43,.55);
+  backdrop-filter:blur(6px);
+  display:grid;place-items:center;
+  z-index:200;
+  padding:20px;
+}
+.modal-backdrop[hidden]{display:none}
+.modal{
+  background:white;
+  border-radius:20px;
+  padding:28px;
+  max-width:440px;
+  width:100%;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  text-align:center;
+}
+.modal h3{margin:0 0 18px;color:var(--navy);font-size:20px;font-weight:800}
+.modal-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  margin:16px 0 18px;
+}
+.modal-stats > div{
+  background:#F3FAF8;border:1px solid #DCEFEB;border-radius:12px;padding:12px 6px;
+}
+.modal-stats b{display:block;font-size:22px;color:var(--navy);font-weight:800}
+.modal-stats span{font-size:11px;color:var(--muted);font-weight:700}
+.modal p{font-size:13px;color:var(--muted);font-weight:600;margin:0 0 18px}
+.modal-actions{display:flex;gap:10px;justify-content:center}
+.modal-actions .btn{flex:1}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:#071F2B;color:#fff;padding:12px 22px;border-radius:10px;
+  font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25);
+  z-index:999;animation:toastIn .3s ease;max-width:calc(100% - 40px);text-align:center;
+}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,10px)}}
+
 /* RESULTS */
 .result-card{
   background:white;
@@ -663,6 +780,21 @@ button:focus-visible,input:focus-visible{
   color:var(--muted);
   font-weight:600;
 }
+
+.grade-badge{
+  display:inline-grid;
+  place-items:center;
+  min-width:74px;height:74px;
+  border-radius:20px;
+  background:var(--teal-dark);
+  color:white;
+  font-family:var(--font-en);
+  font-size:34px;
+  font-weight:800;
+  margin:12px auto 8px;
+  box-shadow:0 10px 24px rgba(7,31,43,.15);
+}
+
 .score-circle{
   width:155px;height:155px;
   margin:22px auto;
@@ -687,11 +819,15 @@ button:focus-visible,input:focus-visible{
   font-weight:800;
   color:var(--navy);
 }
+.score-sub{
+  font-size:14px;color:var(--muted);font-weight:700;margin-top:6px;
+}
+
 .result-stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:12px;
-  max-width:650px;
+  max-width:750px;
   margin:20px auto;
 }
 .result-stat{
@@ -712,7 +848,24 @@ button:focus-visible,input:focus-visible{
   color:var(--muted);
   font-weight:700;
 }
-.result-actions{text-align:center;margin:25px 0}
+
+.section-title{
+  font-size:19px;font-weight:800;color:var(--navy);
+  margin:30px 0 14px;padding-top:22px;border-top:1px solid var(--line);
+}
+
+.category-breakdown{display:grid;gap:12px;margin:0 0 22px}
+.cat-row{background:#F8FCFB;border:1px solid #E2F0EC;border-radius:12px;padding:14px}
+.cat-head{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;gap:10px;flex-wrap:wrap}
+.cat-head span{font-weight:700;color:var(--ink)}
+.cat-head b{font-family:var(--font-en);font-size:13px;color:var(--muted);font-weight:800}
+.cat-bar{height:8px;background:#E8EFF0;border-radius:6px;overflow:hidden}
+.cat-bar > div{height:100%;border-radius:6px;background:#12B8A6;transition:width .6s ease}
+.cat-row.good .cat-bar > div{background:var(--green)}
+.cat-row.ok .cat-bar > div{background:var(--amber)}
+.cat-row.weak .cat-bar > div{background:var(--red)}
+
+.result-actions{text-align:center;margin:25px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .review{border-top:1px solid var(--line);padding-top:25px}
 .review h3{
   font-size:21px;
@@ -759,6 +912,16 @@ button:focus-visible,input:focus-visible{
   padding:15px 0 30px;
 }
 
+/* شاشة الحماية */
+.security-shield{
+  position:fixed;inset:0;background:rgba(7,31,43,.98);
+  z-index:9999;display:none;place-items:center;
+  color:white;text-align:center;padding:30px;
+}
+.security-shield.active{display:grid}
+.security-shield h2{font-size:24px;margin:0 0 10px}
+.security-shield p{font-size:14px;color:#C0D5D8;max-width:420px;margin:0 auto}
+
 /* TABLET */
 @media(max-width:900px){
   .hero{
@@ -770,7 +933,7 @@ button:focus-visible,input:focus-visible{
   .exam-layout{grid-template-columns:1fr}
   .exam-sidebar{order:2}
   .question-grid{grid-template-columns:repeat(8,1fr)}
-  .timer{font-size:64px}
+  .timer{font-size:80px}
 }
 
 /* MOBILE */
@@ -800,700 +963,4 @@ button:focus-visible,input:focus-visible{
   .hero-description{font-size:16px;line-height:2.2}
   .student-field{margin-top:22px}
   .hero-art{min-height:190px;margin:18px 0 5px}
-  .art-orbit{width:165px;height:165px}
-  .art-core{width:112px;height:112px;border-radius:23px}
-  .art-core svg{width:78px;height:78px}
-  .float-card{padding:8px 10px;font-size:10px}
-  .float-card b{font-size:15px}
-  .float-one{top:0;right:0}
-  .float-two{bottom:5px;left:0}
-  .float-three{bottom:0;right:30px}
-
-  .exam-top{padding:12px;border-radius:16px;gap:8px}
-  .exam-brand{gap:8px}
-  .exam-brand img{width:34px;height:34px}
-  .exam-brand strong{font-size:12px}
-  .exam-brand small{font-size:8px}
-
-  .timer-box{
-    min-width:0;
-    flex:1;
-    padding:8px 10px 9px;
-    border-radius:13px;
-  }
-  .timer-label{font-size:11px}
-  .timer{
-    font-size:clamp(43px,12vw,59px);
-    line-height:1.18;
-  }
-
-  .student-strip{font-size:12px}
-  .question-card{
-    padding:23px 16px;
-    min-height:350px;
-    border-radius:18px;
-    box-shadow:
-      0 8px 25px rgba(7,31,43,.07),
-      0 0 0 3px rgba(18,184,166,.07),
-      0 0 22px rgba(18,184,166,.15);
-  }
-  .question-text{
-    font-size:20px;
-    line-height:2;
-    font-weight:800;
-  }
-  .question-label{font-size:12px}
-  .question-number{font-size:13px}
-  .options{grid-template-columns:1fr;gap:10px}
-  .option{min-height:62px;font-size:15px;padding:11px 12px}
-  .option-letter{width:36px;height:36px}
-
-  .question-grid{
-    display:flex;
-    overflow-x:auto;
-    gap:8px;
-    padding:3px 1px 9px;
-    scrollbar-width:thin;
-  }
-  .q-dot{flex:0 0 39px;height:39px}
-  .exam-sidebar{padding:16px}
-  .exam-actions{flex-direction:column}
-  .action-group{width:100%}
-  .action-group .btn{flex:1}
-  .btn-submit{width:100%}
-
-  .result-card{padding:20px 13px}
-  .result-heading h2{font-size:25px}
-  .result-stats{gap:6px}
-  .result-stat{padding:13px 4px}
-  .result-stat b{font-size:21px}
-  .result-stat span{font-size:11px}
-  .review-item{padding:14px}
-  .review-question{font-size:15px}
-  .review-answer{font-size:14px}
-  .explanation{font-size:13px}
-}
-
-@media(max-width:370px){
-  .brand-name{font-size:13px}
-  .header-tag{font-size:9px}
-  .hero h1{font-size:37px}
-  .timer{font-size:42px}
-  .exam-brand strong{font-size:11px}
-}
-
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    scroll-behavior:auto!important;
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
-  }
-}
-
-@media print{
-  body{background:white}
-  .header,.exam-actions,.result-actions,.footer{display:none!important}
-  .result-card{box-shadow:none;border:0}
-  .review-item{break-inside:avoid}
-}
-</style>
-</head>
-
-<body>
-<div class="container">
-
-<header class="header">
-  <div class="brand">
-    <img src="logo.png" alt="الإدارة ببساطة">
-    <div>
-      <div class="brand-name">الإدارة ببساطة</div>
-      <span class="brand-sub">LEARN • PRACTICE • EXCEL</span>
-    </div>
-  </div>
-  <div class="header-tag">اختبار تدريبي تفاعلي</div>
-</header>
-
-<!-- INTRO -->
-<section id="intro">
-  <div class="hero">
-
-    <div class="hero-content">
-      <div class="eyebrow">MIDTERM PRACTICE EXAM</div>
-
-      <h1>الإدارة <span>المالية</span></h1>
-
-      <p class="hero-description">
-        أصدقائي الغاليين .. طلاب الإدارة بساطة ..<br>
-        ان شاء الله امتحان الميد تيرم يكون يسير وبسيط<br>
-        حل الاختبار ده اكتر من مرة والتزم بالوقت عشان تدرب نفسك<br>
-        <strong>بالتوفيق ، اخوكم عمرو الشوبكي</strong>
-      </p>
-
-      <div class="student-field">
-        <label for="student">اسم الطالب بالكامل</label>
-        <input id="student" type="text" autocomplete="name"
-               placeholder="اكتب اسمك كما تريد ظهوره في النتيجة">
-        <button class="start-btn" id="start">ابدأ الاختبار الآن ←</button>
-      </div>
-
-      <div class="hero-note">
-        30 دقيقة من وقتك • 15 سؤالًا • تسليم تلقائي عند انتهاء الوقت
-      </div>
-    </div>
-
-    <div class="hero-art" aria-hidden="true">
-      <div class="art-orbit">
-        <div class="art-core">
-          <svg viewBox="0 0 150 150" fill="none">
-            <rect x="19" y="19" width="112" height="112" rx="20"
-                  stroke="#75DCCE" stroke-width="2" opacity=".5"/>
-            <path d="M39 103L62 79L80 91L111 48"
-                  stroke="#75DCCE" stroke-width="6"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M91 48H111V68" stroke="#75DCCE"
-                  stroke-width="6" stroke-linecap="round"/>
-            <path d="M39 113H111" stroke="#75DCCE"
-                  stroke-width="2" opacity=".4"/>
-            <circle cx="39" cy="103" r="5" fill="#75DCCE"/>
-            <circle cx="62" cy="79" r="5" fill="#75DCCE"/>
-            <circle cx="80" cy="91" r="5" fill="#75DCCE"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="float-card float-one"><b>ROI</b>العائد على الاستثمار</div>
-      <div class="float-card float-two"><b>+15%</b>مؤشرات الأداء</div>
-      <div class="float-card float-three">FINANCIAL ANALYSIS</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- EXAM -->
-<section id="exam">
-
-  <div class="exam-top">
-    <div class="exam-brand">
-      <img src="logo.png" alt="">
-      <div>
-        <strong>اختبار الإدارة المالية</strong>
-        <small>FINANCIAL MANAGEMENT</small>
-      </div>
-    </div>
-
-    <div class="timer-box" id="timerBox">
-      <div class="timer-label">الوقت المتبقي</div>
-      <div class="timer" id="timer" role="timer" aria-live="off"
-           aria-label="الوقت المتبقي 30 دقيقة">30:00</div>
-    </div>
-  </div>
-
-  <div class="student-strip">
-    <span id="studentLabel"></span>
-    <strong id="answered" aria-live="polite">تمت الإجابة: 0</strong>
-  </div>
-
-  <div class="progress-track" role="progressbar" aria-label="نسبة الإجابة"
-       aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progressTrack">
-    <div class="progress-fill" id="progress"></div>
-  </div>
-
-  <div class="exam-layout">
-
-    <main>
-      <div class="question-card">
-
-        <div class="question-top">
-          <span class="question-label">السؤال الحالي</span>
-          <span class="question-number" id="qnum">01 / 15</span>
-        </div>
-
-        <h2 class="question-text" id="question"></h2>
-        <div class="options" id="options"></div>
-
-      </div>
-
-      <div class="exam-actions">
-        <div class="action-group">
-          <button class="btn btn-light" id="prev">السابق</button>
-          <button class="btn btn-primary" id="next">السؤال التالي ←</button>
-        </div>
-
-        <button class="btn btn-submit" id="submit">إنهاء وتسليم الاختبار</button>
-      </div>
-
-      <div class="exam-warning">
-        تأكد من مراجعة إجاباتك قبل التسليم. لن تتمكن من تعديلها بعد ذلك.
-      </div>
-    </main>
-
-    <aside class="exam-sidebar">
-      <div class="sidebar-title">التنقل بين الأسئلة</div>
-      <div class="sidebar-sub">اضغط على رقم السؤال للانتقال إليه</div>
-
-      <div class="question-grid" id="dots"></div>
-
-      <div class="legend">
-        <div class="legend-item"><i class="legend-dot green"></i> تمت الإجابة</div>
-        <div class="legend-item"><i class="legend-dot dark"></i> السؤال الحالي</div>
-        <div class="legend-item"><i class="legend-dot"></i> لم تتم الإجابة</div>
-      </div>
-    </aside>
-
-  </div>
-</section>
-
-<!-- RESULT -->
-<section id="result">
-  <div class="result-card">
-
-    <div class="result-heading">
-      <div class="result-kicker">YOUR PERFORMANCE</div>
-      <h2 id="resultTitle">انتهى الاختبار</h2>
-      <p id="resultMessage"></p>
-
-      <div class="score-circle" id="scoreCircle">
-        <div class="score-value" id="score">0%</div>
-      </div>
-
-      <p>نسبة إجاباتك الصحيحة</p>
-    </div>
-
-    <div class="result-stats">
-      <div class="result-stat">
-        <b id="correctCount">0</b>
-        <span>إجابة صحيحة</span>
-      </div>
-
-      <div class="result-stat">
-        <b id="wrongCount">0</b>
-        <span>إجابة خاطئة</span>
-      </div>
-
-      <div class="result-stat">
-        <b id="blankCount">0</b>
-        <span>بدون إجابة</span>
-      </div>
-    </div>
-
-    <div class="result-actions">
-      <button class="btn btn-primary" onclick="window.print()">طباعة النتيجة</button>
-    </div>
-
-    <div class="review" id="review">
-      <h3>مراجعة الإجابات</h3>
-    </div>
-
-  </div>
-</section>
-
-<footer class="footer">
-  الإدارة ببساطة © د. عمرو الشوبكي
-  <br>اختبار تدريبي — الإدارة المالية
-</footer>
-
-</div>
-
-<script>
-"use strict";
-
-const QUESTIONS = [
-{
- q:"أي من الأصول التالية قد ينتج عن الاستثمار فيها مزيدًا من الربحية للمنشأة؟",
- o:["المخزون","النقدية","الأصول الثابتة","الأصول المتداولة"],
- a:2,
- why:"الأصول الثابتة تُستخدم في النشاط وتساهم في تحقيق الإيرادات والربحية."
-},
-{
- q:"ما أسلوب التخطيط المالي الذي يحدد عدد الوحدات الواجب إنتاجها وبيعها لتغطية جميع التكاليف؟",
- o:["تحليل التعادل","التنبؤ المالي","تحليل الحساسية","الرفع المالي"],
- a:0,
- why:"تحليل التعادل يحدد حجم المبيعات الذي تتساوى عنده الإيرادات مع إجمالي التكاليف."
-},
-{
- q:"إجمالي الخصوم المتداولة 100,000 جنيه، والمخزون 50,000 جنيه، ونسبة التداول 2.2. فما نسبة التداول السريع؟",
- o:["1.16","1.4","1.7","2.43"],
- a:2,
- why:"الأصول المتداولة = 220,000. النسبة السريعة = (220,000 - 50,000) ÷ 100,000 = 1.7."
-},
-{
- q:"تكاليف ثابتة سنوية 100,000 جنيه، والمبيعات 15,000 وحدة، وهامش المساهمة للوحدة 20 جنيهًا. درجة الرفع التشغيلي تساوي:",
- o:["2.3 مرة","1.5 مرة","2 مرة","0.75 مرة"],
- a:1,
- why:"هامش المساهمة الكلي = 300,000. الرفع التشغيلي = 300,000 ÷ 200,000 = 1.5 مرة."
-},
-{
- q:"تحديد الأهداف المالية المستقبلية طويلة وقصيرة الأجل للمنظمة وطرق تحقيقها يُعرف بـ:",
- o:["التنبؤ المالي","التخطيط المالي","الرفع المالي","الإدارة المالية"],
- a:1,
- why:"التخطيط المالي يحدد الأهداف المالية والوسائل والموارد اللازمة لتحقيقها."
-},
-{
- q:"أي العبارات التالية عن الأشكال المختلفة لمنظمات الأعمال غير صحيحة وفقًا للمادة؟",
- o:[
- "الشركات المساهمة تستطيع تمويل أنشطتها بسهولة نسبيًا",
- "شركات الأشخاص تعاني من مشكلات الوكالة",
- "المنشآت الفردية واسعة الانتشار لسهولة تكوينها",
- "شركات الأشخاص لا تدفع ضرائب حكومية بصفة مستقلة"
- ],
- a:1,
- why:"وفقًا لمفتاح الإجابة بالمادة، العبارة غير الصحيحة هي أن شركات الأشخاص تعاني من مشكلات الوكالة."
-},
-{
- q:"صافي ربح شركة 150,000 جنيه، وعدد الأسهم 25,000 سهم، وسعر السهم السوقي 96 جنيهًا. مضاعف السعر يساوي:",
- o:["11 مرة","13 مرة","16 مرة","20 مرة"],
- a:2,
- why:"ربحية السهم = 6 جنيهات. مضاعف السعر = 96 ÷ 6 = 16 مرة."
-},
-{
- q:"الربح التشغيلي 200,000 جنيه، والقروض 100,000 جنيه بفائدة سنوية 17%. درجة الرفع المالي تساوي تقريبًا:",
- o:["0.78 مرة","1.1 مرة","1.6 مرة","2 مرة"],
- a:1,
- why:"الفوائد = 17,000. درجة الرفع المالي = 200,000 ÷ 183,000 ≈ 1.1 مرة."
-},
-{
- q:"إيجارات سنوية 43,000 جنيه وفواتير كهرباء 17,000 جنيه. تكلفة المواد الخام للوحدة 14 جنيهًا وسعر بيعها 26 جنيهًا. ما المبيعات اللازمة لتحقيق ربح 120,000 جنيه؟",
- o:["15,000 وحدة","230,000 جنيه","390,000 جنيه","4,500 وحدة"],
- a:2,
- why:"التكاليف الثابتة = 60,000. الوحدات المطلوبة = 15,000 وحدة. قيمة المبيعات = 390,000 جنيه."
-},
-{
- q:"المفهوم الذي يعبر عن قدرة المنشأة على استخدام الأصول ذات التكاليف الثابتة لتعظيم أثر تغير المبيعات على الربح التشغيلي هو:",
- o:["تحليل التعادل","الرفع الكلي","الرفع التشغيلي","الرفع المالي"],
- a:2,
- why:"الرفع التشغيلي يرتبط بالتكاليف التشغيلية الثابتة وتأثير تغير المبيعات على الربح التشغيلي."
-},
-{
- q:"إيرادات المبيعات 150 مليون جنيه، وهامش الربح 5%، وإجمالي الأصول 50 مليونًا، ومضاعف الملكية 1.6. العائد على الملكية يساوي:",
- o:["11%","16%","19%","24%"],
- a:3,
- why:"صافي الربح = 7.5 مليون. العائد على الأصول = 15%. العائد على الملكية = 15% × 1.6 = 24%."
-},
-{
- q:"من الوسائل التي يمكن أن تحفز إدارة الشركة المساهمة على تعظيم ثروة المساهمين:",
- o:[
- "تعظيم قيمة سهم الشركة",
- "استخدام الشراء الائتماني",
- "التوسع في المشروعات الرأسمالية",
- "التهديد بالاستيلاء على الشركة"
- ],
- a:3,
- why:"التهديد بالاستيلاء على الشركة يمثل آلية رقابية قد تضغط على الإدارة لتحسين الأداء."
-},
-{
- q:"متوسط فترة تحصيل حسابات القبض 18 يومًا، وإجمالي المبيعات 84,000 جنيه نصفها آجل. باستخدام سنة 360 يومًا، رصيد حسابات القبض يساوي:",
- o:["1,600 جنيه","2,100 جنيه","4,200 جنيه","6,000 جنيه"],
- a:1,
- why:"المبيعات الآجلة = 42,000. حسابات القبض = (42,000 ÷ 360) × 18 = 2,100 جنيه."
-},
-{
- q:"التكاليف الثابتة 215,000 جنيه، والتكلفة المتغيرة للوحدة 135 جنيهًا، وسعر البيع 220 جنيهًا. بعد تخفيض التكاليف الثابتة 12%، كمية التعادل تساوي تقريبًا:",
- o:["1,990 وحدة","1,788 وحدة","2,226 وحدة","2,643 وحدة"],
- a:2,
- why:"التكاليف الثابتة الجديدة = 189,200. كمية التعادل = 189,200 ÷ 85 ≈ 2,226 وحدة."
-},
-{
- q:"من أمثلة الحوافز التي قد يحصل عليها المديرون عند تحقيق مستويات أداء مرتفعة بهدف تعظيم ثروة المساهمين:",
- o:["خيارات شراء الأسهم","الشراء الائتماني","زيادة سعر السهم","التهديد بالفصل"],
- a:0,
- why:"خيارات شراء الأسهم تربط جزءًا من منفعة المدير بأداء السهم وقيمة الشركة."
-}
-];
-
-const $ = id => document.getElementById(id);
-const letters = ["أ","ب","ج","د"];
-
-let current = 0;
-let answers = Array(QUESTIONS.length).fill(null);
-let remaining = 30 * 60;
-let clock = null;
-let finished = false;
-let studentName = "";
-
-function formatTime(seconds){
-  return String(Math.floor(seconds/60)).padStart(2,"0") + ":" +
-         String(seconds%60).padStart(2,"0");
-}
-
-function updateTimer(){
-  const timer = $("timer");
-  timer.textContent = formatTime(remaining);
-
-  timer.setAttribute(
-    "aria-label",
-    "الوقت المتبقي " + Math.floor(remaining/60) +
-    " دقيقة و" + (remaining%60) + " ثانية"
-  );
-
-  if(remaining <= 180){
-    timer.classList.add("warning");
-    $("timerBox").classList.add("urgent");
-  }
-}
-
-function startExam(){
-  if(finished || clock !== null) return;
-
-  studentName = $("student").value.trim();
-
-  if(!studentName){
-    $("student").focus();
-    alert("من فضلك اكتب اسم الطالب أولاً.");
-    return;
-  }
-
-  $("start").disabled = true;
-  $("intro").style.display = "none";
-  $("exam").style.display = "block";
-  $("studentLabel").textContent = "الطالب: " + studentName;
-
-  updateTimer();
-  renderQuestion();
-
-  window.scrollTo({top:0,behavior:"smooth"});
-
-  clock = setInterval(()=>{
-    if(finished) return;
-
-    remaining = Math.max(0,remaining - 1);
-    updateTimer();
-
-    if(remaining <= 0){
-      finishExam(true);
-    }
-  },1000);
-}
-
-function renderQuestion(){
-  const q = QUESTIONS[current];
-
-  $("qnum").textContent =
-    String(current+1).padStart(2,"0") + " / " + QUESTIONS.length;
-
-  $("question").textContent = q.q;
-  $("options").innerHTML = "";
-
-  q.o.forEach((option,index)=>{
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "option" +
-      (answers[current] === index ? " selected" : "");
-
-    button.setAttribute(
-      "aria-pressed",
-      String(answers[current] === index)
-    );
-
-    const letter = document.createElement("span");
-    letter.className = "option-letter";
-    letter.textContent = letters[index];
-
-    const text = document.createElement("span");
-    text.textContent = option;
-
-    button.append(letter,text);
-
-    button.addEventListener("click",()=>{
-      if(finished) return;
-
-      answers[current] = index;
-      renderQuestion();
-    });
-
-    $("options").appendChild(button);
-  });
-
-  const count = answers.filter(a=>a !== null).length;
-
-  $("answered").textContent =
-    "تمت الإجابة: " + count + " / " + QUESTIONS.length;
-
-  $("progress").style.width =
-    (count / QUESTIONS.length * 100) + "%";
-
-  $("progressTrack").setAttribute(
-    "aria-valuemax",
-    String(QUESTIONS.length)
-  );
-
-  $("progressTrack").setAttribute(
-    "aria-valuenow",
-    String(count)
-  );
-
-  $("prev").disabled = current === 0;
-  $("next").disabled = current === QUESTIONS.length-1;
-
-  $("dots").innerHTML = "";
-
-  QUESTIONS.forEach((question,index)=>{
-    const dot = document.createElement("button");
-
-    dot.type = "button";
-
-    dot.className = "q-dot" +
-      (answers[index] !== null ? " done" : "") +
-      (index === current ? " current" : "");
-
-    dot.textContent = index+1;
-
-    dot.setAttribute(
-      "aria-label",
-      "الانتقال إلى السؤال " + (index+1)
-    );
-
-    dot.setAttribute(
-      "aria-current",
-      index === current ? "step" : "false"
-    );
-
-    dot.addEventListener("click",()=>{
-      if(finished) return;
-
-      current = index;
-      renderQuestion();
-    });
-
-    $("dots").appendChild(dot);
-  });
-}
-
-function finishExam(auto = false){
-  if(finished) return;
-
-  if(!auto){
-    const unanswered = answers.filter(a=>a === null).length;
-
-    let message = "هل تريد تسليم الاختبار نهائيًا؟";
-
-    if(unanswered > 0){
-      message += "\nلم تجب عن " + unanswered + " سؤال.";
-    }
-
-    if(!confirm(message)) return;
-  }
-
-  finished = true;
-
-  if(clock !== null){
-    clearInterval(clock);
-    clock = null;
-  }
-
-  $("exam").style.display = "none";
-  $("result").style.display = "block";
-
-  let correct = 0;
-  let blank = 0;
-
-  QUESTIONS.forEach((q,index)=>{
-    if(answers[index] === null){
-      blank++;
-    }else if(answers[index] === q.a){
-      correct++;
-    }
-  });
-
-  const wrong = QUESTIONS.length - correct - blank;
-  const percentage = Math.round(correct / QUESTIONS.length * 100);
-
-  $("score").textContent = percentage + "%";
-
-  $("scoreCircle").style.setProperty(
-    "--score",
-    percentage+"%"
-  );
-
-  $("correctCount").textContent = correct;
-  $("wrongCount").textContent = wrong;
-  $("blankCount").textContent = blank;
-
-  $("resultTitle").textContent = auto ?
-    "انتهى الوقت وتم تسليم إجاباتك" :
-    "تم تسليم الاختبار بنجاح";
-
-  $("resultMessage").textContent =
-    studentName + "، حصلت على " + correct +
-    " من " + QUESTIONS.length + " درجات.";
-
-  $("review").innerHTML = "<h3>مراجعة الإجابات</h3>";
-
-  QUESTIONS.forEach((q,index)=>{
-    const item = document.createElement("article");
-    item.className = "review-item";
-
-    const title = document.createElement("div");
-    title.className = "review-question";
-    title.textContent = (index+1) + ". " + q.q;
-
-    item.appendChild(title);
-
-    const response = document.createElement("div");
-
-    response.className =
-      answers[index] === q.a ?
-      "review-answer correct" :
-      "review-answer wrong";
-
-    if(answers[index] === q.a){
-      response.textContent = "✓ إجابتك صحيحة";
-    }else if(answers[index] === null){
-      response.textContent = "لم تتم الإجابة عن هذا السؤال";
-    }else{
-      response.textContent =
-        "✕ إجابتك: " + letters[answers[index]] +
-        " — " + q.o[answers[index]];
-    }
-
-    item.appendChild(response);
-
-    const correctAnswer = document.createElement("div");
-    correctAnswer.className = "review-answer correct";
-
-    correctAnswer.textContent =
-      "الإجابة الصحيحة: " + letters[q.a] +
-      " — " + q.o[q.a];
-
-    item.appendChild(correctAnswer);
-
-    const explanation = document.createElement("div");
-    explanation.className = "explanation";
-    explanation.textContent = q.why;
-
-    item.appendChild(explanation);
-
-    $("review").appendChild(item);
-  });
-
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-/* EVENTS */
-$("start").addEventListener("click",startExam);
-
-$("student").addEventListener("keydown",event=>{
-  if(event.key === "Enter") startExam();
-});
-
-$("prev").addEventListener("click",()=>{
-  if(current > 0 && !finished){
-    current--;
-    renderQuestion();
-  }
-});
-
-$("next").addEventListener("click",()=>{
-  if(current < QUESTIONS.length-1 && !finished){
-    current++;
-    renderQuestion();
-  }
-});
-
-$("submit").addEventListener("click",()=>{
-  finishExam(false);
-});
-</script>
-
-</body>
-</html>
+  .art-orbit{width:165px;height:165
